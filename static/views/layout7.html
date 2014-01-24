@@ -1,0 +1,28 @@
+<%- include /include/head.html %>
+<style>
+    .m-main-demo{width: 300px;height: 300px;overflow: hidden;position: relative;border:1px solid #999;display: inline;float:left;margin:50px;}
+    .m-main-demo p{position: absolute;top:50%;left:50%;margin: 0;padding: 0;}
+    .m-main-demo img{position:absolute;top:-50%;left:-50%;display: block;}
+    .m-main-demo img.hidden{visibility: hidden;position: static;}
+</style>
+<div class="m-main-demo">
+    <p>
+        <img src="/public/images/1.jpg" class="hidden"/>
+        <img src="/public/images/1.jpg" />
+    </p>
+</div>
+<div class="m-main-demo">
+    <p>
+        <img src="/public/images/2.jpg" class="hidden"/>
+        <img src="/public/images/2.jpg" />
+    </p>
+</div>
+<div class="m-main-demo">
+    <p>
+        <img src="/public/images/3.jpg" class="hidden"/>
+        <img src="/public/images/3.jpg" />
+    </p>
+</div>
+
+</body>
+</html>

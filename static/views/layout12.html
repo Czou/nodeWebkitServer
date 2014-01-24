@@ -1,0 +1,24 @@
+<%- include /include/head.html %>
+<style>
+    h2{margin:50px 0 0 0;}
+    .m-demo{width:800px;height:800px;margin:50px;}
+    .m-demo .divp{width: 800px;height: 200px;}
+    .divp div{width:100px;height:60px;display: inline-block;background-color: #999;margin:50px;}
+    .divp .div{*display: inline;}
+</style>
+
+
+<div class="m-demo">
+    <h2>bug</h2>
+    <div class="divp">
+        <div></div>
+        <div></div>
+    </div>
+    <h2>fix</h2>
+    <div class="divp">
+        <div class="div"></div>
+        <div class="div"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<%- include /include/head.html %>
+<div class="g-bd2">
+    <div class="g-in">
+        <div class="g-sd">
+            <%- include /include/jscodenav.html %>
+        </div>
+        <div class="g-mn">
+            <div class="g-mnc">
+                <h2 class="u-ttb2">TAB插件</h2>
+                <h3 class="u-ttb3">TAB插件介绍</h3>
+                <p>
+                   插件文件名为：witch.ui.tab.js，自行添加引用，实际使用多个插件时请合并<br/>
+                </p>
+                <p>
+                    本插件是基于jQuery的插件<br/>
+                    兼容性：IE7+<br/>
+                    压缩后：820B<br/>
+                    当前版本：0.1<br/>
+                    默认参数：
+                </p>
+                <ol class="m-code m-codec">
+                    <li>var defaults = {</li>
+                    <li> &nbsp;&nbsp;&nbsp;activeClass:"f-tab-active",//默认标题选中样式</li>
+                    <li> &nbsp;&nbsp;&nbsp;contentClass:'f-tab-c',//默认正文区样式</li>
+                    <li> &nbsp;&nbsp;&nbsp;ajaxUrl:undefined,//通过ajax加载内容，此为ajax获取数据的地址，暂不支持JSONP//默认为不通过ajax</li>
+                    <li> &nbsp;&nbsp;&nbsp;//若为ajax获取数据，则当正文区不为空时执行</li>
+                    <li> &nbsp;&nbsp;&nbsp;//参数请写在响应的标题li上，属性为param，提交方法：POST</li>
+                    <li> &nbsp;&nbsp;&nbsp; loaddingClass:'f-tab-loadding'//如果ajax，则loadding按钮样式</li>
+                    <li>}
+
+                </ol>
+               <h3 class="u-ttb3">简单示例</h3>
+               <p>&nbsp;</p>
+               <div id="tab" class="f-tab">
+                   <ul class="f-tab-title">
+                       <li class="f-tab-active"><a href="#tab-1">标签1</a></li>
+                       <li><a href="#tab-2">标签2</a></li>
+                       <li><a href="#tab-3">标签3</a></li>
+                   </ul>
+                   <div class="f-tab-c" id="tab-1" style="display: block;">标签1的内容</div>
+                   <div class="f-tab-c" id="tab-2">标签2的内容</div>
+                   <div class="f-tab-c" id="tab-3">标签3的内容</div>
+               </div>
+                <p>JS代码</p>
+                <ol class="m-code m-codec">
+                    <li> $('#tab').witchTab();</li>
+                </ol>
+                <h3 class="u-ttb3">嵌套示例</h3>
+                <p>&nbsp;</p>
+                <div id="tab1" class="f-tab">
+                    <ul class="f-tab-title">
+                        <li class="f-tab-active"><a href="#tab1-1">标签1</a></li>
+                        <li><a href="#tab1-2">标签2</a></li>
+                        <li><a href="#tab1-3">标签3</a></li>
+                    </ul>
+                    <div class="f-tab-c" id="tab1-1" style="display: block;">
+                        <!-- 第一个嵌套 -->
+                        <div id="tab2" class="f-tab">
+                            <ul class="f-tab-title">
+                                <li class="f-tab-active"><a href="#tab2-1">标签11</a></li>
+                                <li><a href="#tab2-2">标签12</a></li>
+                                <li><a href="#tab2-3">标签13</a></li>
+                            </ul>
+                            <div class="f-tab-c" id="tab2-1" style="display: block;">标签11的内容</div>
+                            <div class="f-tab-c" id="tab2-2">标签12的内容</div>
+                            <div class="f-tab-c" id="tab2-3">标签13的内容</div>
+                        </div>
+                        <!-- /第一个嵌套 -->
+                    </div>
+                    <div class="f-tab-c" id="tab1-2">
+                        <!-- 第二个嵌套 -->
+                        <div id="tab3" class="f-tab">
+                            <ul class="f-tab-title">
+                                <li class="f-tab-active"><a href="#tab3-1">标签21</a></li>
+                                <li><a href="#tab3-2">标签22</a></li>
+                                <li><a href="#tab3-3">标签23</a></li>
+                            </ul>
+                            <div class="f-tab-c" id="tab3-1" style="display: block;">标签21的内容</div>
+                            <div class="f-tab-c" id="tab3-2">标签22的内容</div>
+                            <div class="f-tab-c" id="tab3-3">标签23的内容</div>
+                        </div>
+                        <!-- /第二个嵌套 -->
+                    </div>
+                    <div class="f-tab-c" id="tab1-3">标签3的内容</div>
+                </div>
+                <p>JS代码</p>
+                <ol class="m-code m-codec">
+                    <li> $('#tab1').witchTab();</li>
+                    <li> $('#tab2').witchTab();</li>
+                    <li> $('#tab3').witchTab();</li>
+                </ol>
+                <h3 class="u-ttb3">ajax示例--默认第三个为显示项</h3>
+                <p>&nbsp;</p>
+                <div id="tab4" class="f-tab">
+                    <ul class="f-tab-title">
+                        <li  param="tab=1"><a href="#tab4-1">标签41</a></li>
+                        <li param="tab=2"><a href="#tab4-2" >标签42</a></li>
+                        <li class="f-tab-active" param="tab=3"><a href="#tab4-3">标签43</a></li>
+                    </ul>
+                    <div class="f-tab-c" id="tab4-1" ></div>
+                    <div class="f-tab-c" id="tab4-2"></div>
+                    <div class="f-tab-c" id="tab4-3" style="display: block;"></div>
+                </div>
+                <p>JS代码</p>
+                <ol class="m-code m-codec">
+                    <li> $('#tab4').witchTab({ajaxUrl:'/ajax/'});</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/public/js/witch.ui.tab.js"></script>
+<script>
+    $(function(){
+        $('#tab').witchTab();
+        $('#tab1').witchTab();
+        $('#tab2').witchTab();
+        $('#tab3').witchTab();
+        $('#tab4').witchTab({ajaxUrl:'/ajax/'});
+    });
+</script>
+</body>
+</html>

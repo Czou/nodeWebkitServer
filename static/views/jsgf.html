@@ -1,0 +1,151 @@
+<%- include /include/head.html %>
+<div class="g-bd2">
+    <div class="g-in">
+        <div class="g-sd">
+            <%- include /include/jsnav.html%>
+        </div>
+        <div class="g-mn">
+            <div class="g-mnc">
+                <h2 class="u-ttb2">JS规范 - JS基础规范</h2>
+                <h3 class="u-ttb3">概述</h3>
+                <p>
+                   本页面为JS基础规范，即只要书写JS代码都应当遵循的规范
+                </p>
+                <h3 class="u-ttb3">命名规则</h3>
+                <p>变量，函数等采用小驼峰式命名法</p>
+                <p>私有成员或变量在命名前加入下划线_</p>
+                <p>
+                常量声明须用大写并用下划线分割，如：<i class="u-var">NAME_LIKE_THIS</i>，并且永远不要使用 <i class="u-var">const</i> 关键词<br>
+                枚举型对象：对象名用大写，枚举量用小写
+                </p>
+                <p>类命名采用大驼峰式命名法</p>
+                <h3 class="u-ttb3">JS文件命名</h3>
+                <p>
+                    字母使用小写，若是多个单词用 '-' 或者 英文点号 分割，如：child-process.js，witch.ui.js
+                </p>
+                <h3 class="u-ttb3">变量</h3>
+                <p>
+                   声明变量必选添加 <i class="u-var">var</i> 关键字<br/>
+                   定义多变量时，如果某个变量初始化了，就另起一行，重新用一个var来定义余下的变量
+                </p>
+                <ol class="m-code m-codec">
+                   <li>var _a, _b, _c = true;</li>
+                    <li>var _i, _b = false; </li>
+                    <li>var _e; </li>
+                </ol>
+                <h3 class="u-ttb3">字面量</h3>
+                <p>
+                    使用{},[]代替new Object(),new Array()，不要使用string,bool,number对象类型，即不要调用new String,new Boolean,new Number
+                </p>
+                <h3 class="u-ttb3">分号</h3>
+                <p>
+                    总是使用分号结尾，分号不能省略
+                </p>
+                <h3 class="u-ttb3">单引号和双引号</h3>
+                <p>
+                    请优先使用单引号
+                </p>
+                <h3 class="u-ttb3">空格的使用</h3>
+                <p>
+                    数值操作符(如, +/-/*/% 等)两边留空;<br/>
+                    赋值操作符/等价判断符两边留一空格;<br/>
+                    小括号前后留一个空格, 函数名末尾和左括号之间不要出现空格<br/>
+                    for 循环条件中, 分号后留一空格;<br/>
+                    变量声明语句, 数组值, 对象值及函数参数值中的逗号后留一空格;<br/>
+                    空行不要有空格;<br/>
+                    行尾不要有空格;<br/>
+                    逗号和冒号后一定要跟空格;<br/>
+                    点号前后不要出现空格;<br/>
+                    空对象和数组不需要填入空格
+                </p>
+                <h3 class="u-ttb3">缩进</h3>
+                <p>
+                    一律使用2空格缩进，如果习惯使用TAB，请将IDE的TAB设置为2个空格<br/>
+                    WebStorm设置：File -> Settings -> JavaScript -> Use tab character
+                </p>
+                <h3 class="u-ttb3">去除收尾多余空格</h3>
+                <p>
+                    去除收尾多余空格
+                </p>
+                <h3 class="u-ttb3">不要扩展内建类型</h3>
+                <p>
+                    不要扩展 javascript 内建对象的方法。<br/>
+                    一个错误的写法
+                </p>
+                <ol class="m-code m-codec">
+                   <li>Array.prototype.empty = function() {</li>
+                    <li>&nbsp;&nbsp;return !this.length;</li>
+                    <li>}</li>
+                 </ol>
+                <h3 class="u-ttb3">使用有意义的判断条件</h3>
+                <p>
+                    所有复杂的条件判断都需要赋予一个有意义的名字或者方法
+                </p>
+                <ol class="m-code m-codec">
+                    <li>var isValidPassword = password.length >= 4 && /^(?=.*\d).{4,}$/.test(password);</li>
+
+                    <li>if (isValidPassword) {</li>
+                    <li>&nbsp;&nbsp;console.log('winning');</li>
+                    <li>}</li>
+                 </ol>
+                <h3 class="u-ttb3">文件注释</h3>
+                <p>
+                    文件注释用来说明当前文件所实现内容，主要包括说明部分和作者部分。<br>
+                    说明部分：描述文件实现的功能、模块或接口等，如有需要增加使用说明或者范例。<br>
+                    作者部分：记录文件的开发者名称和联系方式，用以后续的维护或者交流沟通等。
+                </p>
+                <ol class="m-code m-codec">
+                   <li>/**</li>
+                    <li>* ------------------------------------------</li>
+                    <li>* 水平滑动器逻辑封装实现文件</li>
+                    <li>* @version  1.0</li>
+                    <li>* @author   左盐(huabinglan@163.com)</li>
+                    <li>* ------------------------------------------</li>
+                    <li>*/</li>
+                </ol>
+                <h3 class="u-ttb3">函数注释</h3>
+                <p>
+                    函数注释用来描述当前定义的函数的功能及输入输出数据，主要包括说明部分、输入部分、输出部分。<br>
+                    说明部分：说明当前接口的功能，如有需要可增加使用说明或者范例。<br>
+                    输入部分：说明输入数据的类型及含义。<br>
+                    输出部分：说明输出数据的类型及含义。
+                </p>
+                <ol class="m-code m-codec">
+                    <li>/**</li>
+                    <li>* 数据是否为整型</li>
+                    <li>* @param d  待校验值</li>
+                    <li>* @param defint  默认值</li>
+                    <li>* @returns {int}</li>
+                    <li>*/</li>
+                    <li>tools.check_data.check_int = function(d,defint) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;if(parseInt(d) != d) return defint;</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;return d;</li>
+                    <li>}</li>
+                </ol>
+                <h3 class="u-ttb3">块内函数声明</h3>
+                <p>
+                    不要在块内声明一个函数，比如：
+                </p>
+                <ol class="m-code m-codec">
+                    <li>if(x) {</li>
+                    <li> function foo() {}</li>
+                    <li>}</li>
+                </ol>
+                <h3 class="u-ttb3">Array遍历</h3>
+                <p>统一写法</p>
+                <ol class="m-code m-codec">
+                    <li>for(var i = 0,l = _array.length; i&lt;l; i++) {</li>
+                    <li>&nbsp;......</li>
+                    <li>}</li>
+                </ol>
+                <h3 class="u-ttb3">关于==和===</h3>
+                <p>
+                    由于==在判断之前会做类型转换，所以尽量使用===和!==进行逻辑判断
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

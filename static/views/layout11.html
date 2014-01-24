@@ -1,0 +1,33 @@
+<%- include /include/head.html %>
+<style>
+    h2{margin:50px 0 0 0;}
+    .m-demo a,.m-demo a img{width:100px;height:60px;}
+    .m-demo a{display:block;}
+    .m-demo a span{zoom:1;}
+    .m-demo-fix a{cursor:pointer;}
+    .m-demo-fix a img{position:relative;z-index:-1;}
+</style>
+
+<div style="width:800px;height:800px;margin:50px;">
+    <h2>bug</h2>
+    <p>ie6、7，对于以下这样的结构，如果span触发了haslayout，那么图片区域将点击无效</p>
+    <div class="m-demo">
+        <a href="#link">
+                <span>
+                    <img src="http://img1.cache.netease.com/cnews/2009/11/9/20091109151554a1569.jpg" />
+                </span>
+        </a>
+    </div>
+    <h2>fix</h2>
+    <p>给图片设置position:relative;z-index:-1;再给a设置cursor:pointer;</p>
+    <div class="m-demo m-demo-fix">
+        <a href="#link">
+                <span>
+                    <img src="http://img1.cache.netease.com/cnews/2009/11/9/20091109151554a1569.jpg" />
+                </span>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

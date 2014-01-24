@@ -1,0 +1,108 @@
+<%- include /include/head.html %>
+<div class="g-bd2">
+    <div class="g-in">
+        <div class="g-sd">
+            <%- include /include/jscodenav.html %>
+        </div>
+        <div class="g-mn">
+            <div class="g-mnc">
+                <h2 class="u-ttb2">动画插件</h2>
+                <h3 class="u-ttb3">动画插件介绍</h3>
+                <p>
+                    插件文件名为：witch.ui.show.js，自行添加引用，实际使用多个插件时请合并<br/>
+                </p>
+                <p>
+                    本插件是基于jQuery的插件<br/>
+                    兼容性：IE7+<br/>
+                    压缩前：4KB<br/>
+                    压缩后：1.4KB<br/>
+                    当前版本：0.1
+                </p>
+                <h3 class="u-ttb3">函数调用</h3>
+                <ol class="m-code m-codec">
+                    <li>$('.f-showc-5').witchShow({'show':'right','fly':'Pulsate','showSpeed':300,'flySpeed':80});</li>
+                </ol>
+                <h3 class="u-ttb3">参数介绍</h3>
+                <p>
+                    show:显示样式，包含：fadeIn（淡入），slideDown（从上往下伸长），down（下滑），clip（从中间往两侧伸展），right（从左侧滑入）<br/>
+                    fly:动画效果，包含：Bounce（上下震动），Shake（左右震动），Pulsate（闪烁），<br/>
+                    showSpeed:显示速度，可以为："slow","normal",  "fast"或者为时间数字，单位毫秒<br/>
+                    flySpeed:动画速度，可以为："slow","normal",  "fast"或者为时间数字，单位毫秒<br/>
+                </p>
+                <h3 class="u-ttb3">样式要求</h3>
+                <p>有移动毫无疑问应设置浮动，显示不显示应设置display:none,其他没有要求</p>
+                <h3 class="u-ttb3">简单示例</h3>
+                <p>淡入，并上下晃动<br/>
+                    <button id="f-showc-1">执行</button></p>
+                <div class="f-show">
+                    <div class="f-showc f-showc-1" style="display: none;">
+                    </div>
+                </div>
+                <p>从上放滑落，并上线晃动<br/>
+                    <button id="f-showc-2">执行</button></p>
+                <div class="f-show">
+                    <div class="f-showc f-showc-2" style="display: none;">
+                    </div>
+                </div>
+                <p>从中间往两侧伸展，并左右晃动<br/>
+                    <button id="f-showc-3">执行</button></p>
+                <div class="f-show">
+                    <div class="f-showc f-showc-3" style="display: none;">
+                        <h2>asdasddas</h2>
+                        <p>asdausiduhauisdhasd<br/>asdasasd</p>
+                    </div>
+                </div>
+                <p>从左侧滑入，并左右晃动<br/>
+                    <button id="f-showc-4">执行</button></p>
+                <div class="f-show">
+                    <div class="f-showc f-showc-4" style="display: none;">
+                        <h2>asdasddas</h2>
+                        <p>asdausiduhauisdhasd<br/>asdasasd</p>
+                    </div>
+                </div>
+                <p>从左侧滑入，并闪烁<br/>
+                    <button id="f-showc-5">执行</button></p>
+                <div class="f-show">
+                    <div class="f-showc f-showc-5" style="display: none;">
+                        <h2>asdasddas</h2>
+                        <p>asdausiduhauisdhasd<br/>asdasasd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/public/js/witch.ui.show.js"></script>
+<script>
+    $(function(){
+        $("#f-showc-1").click(function() {
+            $('.f-showc-1').witchShow({'show':'fadeIn','showSpeed':'1000'});
+            jhide('.f-showc-1');
+        });
+        $("#f-showc-2").click(function() {
+            $('.f-showc-2').witchShow({'show':'down','fly':'Bounce'});
+            jhide('.f-showc-2');
+        });
+        $("#f-showc-3").click(function() {
+            $('.f-showc-3').witchShow({'show':'clip','fly':'Shake','showSpeed':300});
+            jhide('.f-showc-3');
+        });
+        $("#f-showc-4").click(function() {
+            $('.f-showc-4').witchShow({'show':'right','fly':'Shake','showSpeed':300});
+            jhide('.f-showc-4');
+        });
+        $("#f-showc-5").click(function() {
+            $('.f-showc-5').witchShow({'show':'right','fly':'Pulsate','showSpeed':300,'flySpeed':80});
+            jhide('.f-showc-5');
+        });
+    });
+    function jhide(obj){
+        setTimeout(function() {
+            $(obj).fadeOut('fast');
+        },2000);
+    }
+</script>
+</body>
+</html>

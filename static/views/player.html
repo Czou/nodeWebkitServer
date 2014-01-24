@@ -1,0 +1,89 @@
+<%- include /include/head.html %>
+<div class="g-bd2">
+    <div class="g-in">
+        <div class="g-sd">
+            <%- include /include/jscodenav.html %>
+        </div>
+        <div class="g-mn">
+            <div class="g-mnc">
+                <h2 class="u-ttb2">弹窗插件</h2>
+                <h3 class="u-ttb3">弹窗插件介绍</h3>
+                <p>
+                    弹窗使用的插件为：layer<br/>
+                    官方地址:<a href="http://sentsin.com/jquery/layer/" target="_blank">http://sentsin.com/jquery/layer//</a>
+                </p>
+                <p>
+                   本插件是基于jQuery的插件，版本要求>=1.8.0<br/>
+                   layer，一个可以让你想到即可做到的web弹窗（层）解决方案（js组件），贤心出品。layer侧重于用户灵活的自定义，为不同人的使用习惯提供动力。其意义在于，可以让您的页面拥有更丰富与便捷的操作体验，而您只需在调用时简单地配置相关参数，即可轻松实现各位交互。<br/>
+                    兼容性：IE6+<br/>
+                    当前版本：1.7.0
+                </p>
+                <h3 class="u-ttb3">简单示例</h3>
+                <p>&nbsp;</p>
+                <a href="javascript:;" id="j-p1">普通信息框</a><br/>
+                <a href="javascript:;" id="j-p2">tips上-2s消失</a><br/>
+                <a href="javascript:;" id="j-p3">tips右-2s消失</a><br/>
+                <a href="javascript:;" id="j-p4">正在加载-5s自动关闭</a><br/>
+                <a href="javascript:;" id="j-p5">iframe正中弹出</a><br/>
+                <a href="javascript:;" id="j-p6">询问框</a><br/>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/plug/layer/layer.js"></script>
+<script>
+    $(function(){
+       $("#j-p1").click(function() {
+           layer.alert('一个普通的信息框');
+       });
+        $("#j-p2").click(function() {
+            layer.tips('比如实现用户小名片什么的呀', this, {
+                style: ['background-color:#0FA6D8; color:#fff', '#0FA6D8'],
+                maxWidth:150,
+                time:2
+             });
+        });
+        $("#j-p3").click(function() {
+            layer.tips('比如实现用户小名片什么的呀', this, {
+                style: ['background-color:#F26C4F; color:#fff', '#F26C4F'],
+                maxWidth:150,
+                time:2,
+                guide:1
+            });
+        });
+        $("#j-p4").click(function() {
+            layer.load(5,0);
+        });
+        $("#j-p5").click(function() {
+            $.layer({
+                type : 2,
+                title : '神探夏洛克 第三季',
+                iframe : {src : 'http://player.youku.com/player.php/sid/XNjU1NDU5NTQw/v.swf'},
+                area : ['750px' , '466px'],
+                offset : ['100px','']
+            });
+        });
+        $("#j-p6").click(function() {
+            $.layer({
+                shade : [0], //不显示遮罩
+                area : ['auto','auto'],
+                dialog : {
+                    msg:'您是如何看待前端开发？',
+                    btns : 2,
+                    type : 4,
+                    btn : ['重要','奇葩'],
+                    yes : function(){
+                        layer.msg('您选择了重要。',2,1);
+                    },
+                    no : function(){
+                        layer.msg('奇葩!!!',2,4);
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

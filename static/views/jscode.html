@@ -1,0 +1,80 @@
+<%- include /include/head.html %>
+<div class="g-bd2">
+    <div class="g-in">
+        <div class="g-sd">
+            <%- include /include/jscodenav.html %>
+        </div>
+        <div class="g-mn">
+            <div class="g-mnc">
+                <h2 class="u-ttb2">本地化存储</h2>
+                <h3 class="u-ttb3">本地化存储介绍</h3>
+                <p>
+                    本地化存储使用的插件为：store.js<br/>
+                    GitHub:<a href="https://github.com/marcuswestin/store.js/" target="_blank">https://github.com/marcuswestin/store.js/</a>
+                </p>
+                <h3 class="u-ttb3">如何运行</h3>
+                <p>
+                   默认使用localStorage，如果浏览器不支持，则使用userData存储（IE6/IE7），不使用FLASH和Cookie<br/>
+                    store.js使用json数据
+                </p>
+                <h3 class="u-ttb3">容量大小</h3>
+                <p>
+                    userData：单个文件大小：128KB，一个域下共可保存1042KB的文件，个数无限制，在受限站点这个两个值分别为：64KB，640KB，此属性为IE独有<br/>
+                    localStorage：容量为5M，浏览器兼容性：IE8+
+                </p>
+                <h3 class="u-ttb3">使用方法</h3>
+                <ol class="m-code m-codec">
+                    <li><i class="i3">/* 引入store.min.js */</i></li>
+                    <li>&lt;script src="/public/js//store+json2.min.js"&gt;&lt;/script&gt;</li>
+                    <li><i class="i3">/* 基本用法 */</i></li>
+                    <li><i class="i3">/* 是否支持localStorage */</i></li>
+                    <li>store.enabled===true//支持</li>
+                    <li><i class="i3">/* 存储 'marcus' 到 'username' */</i></li>
+                    <li>store.set('username','marcus');</li>
+                    <li><i class="i3">/* 获取username */</i></li>
+                    <li>store.get('username');</li>
+                    <li><i class="i3">/* 清除username */</i></li>
+                    <li>store.remove('username');</li>
+                    <li><i class="i3">/* 清除所有 */</i></li>
+                    <li>store.clear();</li>
+                    <li><i class="i3">/* 存储一个对象，请使用JSON */</i></li>
+                    <li>store.set('user', { name: 'marcus', likes: 'javascript' })</li>
+                    <li><i class="i3">/* 获取一个对象，请使用JSON */</i></li>
+                    <li>var user = store.get('user')</li>
+                    <li>alert(user.name + ' likes ' + user.likes);</li>
+                    <li><i class="i3">/* 获取所有存储对象 */</i></li>
+                    <li>store.getAll().user.name == 'marcus'</li>
+                    <li><i class="i3">/* 遍历 */</i></li>
+                    <li>store.forEach(function(val, key) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;console.log(key, '==', val);</li>
+                    <li>})</li>
+
+                </ol>
+                <h3 class="u-ttb3">使用示例</h3>
+                <p>当前浏览器版本号：<i id="version"></i>，是否支持localStorage：<i id="version1"></i></p>
+                <p>请输入用户名：<input type="text" id="val"/>&nbsp;&nbsp;<button id="stored">存储</button></p>
+                <p>获取值：<button id="stored1">获取</button>&nbsp;&nbsp;<input type="text" id="val1"/></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/public/js/store+json2.min.js"></script>
+ <script>
+     $(function(){
+        $("#version").html($.browser.version);
+        $("#version1").html((store.enabled===true)+" ");
+       // store.clear();
+        $("#stored").click(function() {
+            store.set('user',$('#val').val());
+        });
+        $("#stored1").click(function() {
+            $("#val1").val(store.get('user'));
+        })
+
+
+     });
+ </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<%- include /include/head.html %>
+<div class="g-bd2">
+    <div class="g-in">
+        <div class="g-sd">
+            <%- include /include/cssnav.html %>
+        </div>
+        <div class="g-mn">
+            <div class="g-mnc">
+                <h2 class="u-ttb2">CSS规范 - 代码格式</h2>
+                <h3 class="u-ttb3">选择器、属性和值都使用小写</h3>
+                <p>在xhtml标准中规定了所有标签、属性和值都小写，CSS也是如此。</p>
+                <h3 class="u-ttb3">单行写完一个选择器定义</h3>
+                <p>
+                    便于选择器的寻找和阅读，也便于插入新选择器和编辑，便于模块等的识别。去除多余空格，使代码紧凑减少换行。
+                </p>
+                <p>
+                    如果有嵌套定义，可以采取内部单行的形式。
+                </p>
+                <ol class="m-code m-codec">
+                    <li>/* 单行定义一个选择器 */</li>
+                    <li>.m-list li,.m-list h3{<i class="i3">width</i>:100px;<i class="i3">padding</i>:10px;<i class="i3">border</i>:1px solid #ddd;}</li>
+                    <li>/* 这是一个有嵌套定义的选择器 */</li>
+                    <li>@media all and (max-width:600px){</li>
+                    <li>.m-class1 .itm{<i class="i3">height</i>:17px;<i class="i3">line-height</i>:17px;<i class="i3">font-size</i>:12px;}</li>
+                    <li>.m-class2 .itm{<i class="i3">width</i>:100px;<i class="i3">overflow</i>:hidden;}</li>
+                    <li>}</li>
+                    <li>@-webkit-keyframes showitm{</li>
+                    <li>0%{<i class="i3">height</i>:0;<i class="i3">opacity</i>:0;}</li>
+                    <li>100%{<i class="i3">height</i>:100px;<i class="i3">opacity</i>:1;}</li>
+                    <li>}</li>
+                </ol>
+                <h3 class="u-ttb3">最后一个值也以分号结尾</h3>
+                <p>通常在大括号结束前的值可以省略分号，但是这样做会对修改、添加和维护工作带来不必要的失误和麻烦。</p>
+                <h3 class="u-ttb3">省略值为0时的单位</h3>
+                <p>为节省不必要的字节同时也使阅读方便，我们将0px、0em、0%等值缩写为0。</p>
+                <ol class="m-code m-codec">
+                    <li>.m-box{<i class="i3">margin</i>:0 10px;<i class="i3">background-position</i>:50% 0;}</li>
+                </ol>
+                <h3 class="u-ttb3">使用单引号</h3>
+                <p>省略url引用中的引号，其他需要引号的地方使用单引号。</p>
+                <ol class="m-code m-codec">
+                    <li>.m-box{<i class="i3">background</i>:0 10px;<i class="i3">url(bg.png)</i>;}</li>
+                    <li>.m-box:after{<i class="i3">content</i>:'.';} </li>
+                </ol>
+                <h3 class="u-ttb3">使用16进制表示颜色值</h3>
+                <p>除非你需要透明度而使用rgba，否则都使用#f0f0f0这样的表示方法，并尽量缩写。</p>
+                <ol class="m-code m-codec">
+                    <li>.m-box{<i class="i3">color</i>:#f00;<i class="i3">background</i>:rgba(0,0,0,0.5);} </li>
+                </ol>
+                <h3 class="u-ttb3">根据属性的重要性按顺序书写</h3>
+                <p>只遵循横向顺序即可，先显示定位布局类属性，后盒模型等自身属性，最后是文本类及修饰类属性。</p>
+                <table class="m-table">
+                    <tr>
+                        <td>显示属性</td>
+                        <td>自身属性</td>
+                        <td>文本属性和其他属性</td>
+                    </tr>
+                    <tr>
+                        <td>display</td>
+                        <td>width</td>
+                        <td>font</td>
+                    </tr>
+                    <tr>
+                        <td>visibility</td>
+                        <td>height</td>
+                        <td>text-align</td>
+                    </tr>
+                    <tr>
+                        <td>position</td>
+                        <td>margin</td>
+                        <td>text-decoration</td>
+                    </tr>
+                    <tr>
+                        <td>float</td>
+                        <td>padding</td>
+                        <td>vertical-align</td>
+                    </tr>
+                    <tr>
+                        <td>clear</td>
+                        <td>border</td>
+                        <td>white-space</td>
+                    </tr>
+                    <tr>
+                        <td>list-style</td>
+                        <td>overflow</td>
+                        <td>color</td>
+                    </tr>
+                    <tr>
+                        <td>top</td>
+                        <td>min-width</td>
+                        <td>background</td>
+                    </tr>
+                </table>
+                <ol class="m-code m-codec">
+                    <li>.m-box{<i class="i3"> position</i>:relative;<i class="i3">width</i>:600px;<i class="i3">margin</i>:0 auto 10px;<i class="i3">text-align</i>:center;<i class="i3">color</i>:#000;}  </li>
+                </ol>
+                <h3 class="u-ttb3">私有在前，标准在后</h3>
+                <ol class="m-code m-codec">
+                    <li>.m-box{<i class="i3">-webkit-box-shadow</i>:0 0 0 #000;<i class="i3"> -moz-box-shadow</i>:0 0 0 #000;<i class="i3"> box-shadow</i>:0 0 0 #000;}   </li>
+                </ol>
+                <h3 class="u-ttb3">注释格式：/* 注释文字 */</h3>
+                <p>对选择器的注释统一写在被注释对象的上一行，对属性及值的注释写于分号后。</p>
+                <p>注释内容两端需空格，已确保即使在编码错误的情况下也可以正确解析样式。</p>
+                <p>在必要的情况下，可以使用块状注释，块状注释保持统一的缩进对齐。</p>
+                <p>原则上每个系列的样式都需要有一个注释，言简意赅的表明名称、用途、注意事项等。</p>
+                <ol class="m-code m-codec">
+                    <li>/* 块状注释文字</li>
+                    <li> * 块状注释文字</li>
+                    <li> * 块状注释文字</li>
+                    <li> */</li>
+                    <li>.m-list{<i class="i3">width</i>:500px;}</li>
+                    <li>.m-list li{<i class="i3">height</i>:20px;<i class="i3">line-height</i>:20px;/* 这里是对line-height的一个注释 */<i class="i3">overflow</i>:hidden;}</li>
+                    <li>.m-list li a{<i class="i3">color</i>:#333;}</li>
+                    <li> /* 单行注释文字 */</li>
+                    <li>.m-list li em{<i class="i3">color</i>:#666;}</li>
+                </ol>
+                <h3 class="u-ttb3">原则上不允许使用Hack</h3>
+                <p>
+                    很多不兼容问题可以通过改变方法和思路来解决，并非一定需要Hack，根据经验你完全可以绕过某些兼容问题。<br>
+                    一种合理的结构和合理的样式，是极少会碰到兼容问题的。<br>
+                    由于浏览器自身缺陷，我们无法避开的时候，可以允许使用适当的Hack。<br>
+
+                </p>
+                <h3 class="u-ttb3">统一Hack方法</h3>
+                <p>统一使用“*”和“_”分别对IE7和6进行Hack。如下代码所示：</p>
+                <ol class="m-code m-codec">
+                    <li>/* IE7会显示灰色#888，IE6会显示白色#fff，其他浏览器显示黑色#000 */</li>
+                    <li>.m-list{<i class="i3">color</i>:#000;<i class="i3">*color</i>:#888;<i class="i3">_color</i>:#fff;}</li>
+                </ol>
+                <h3 class="u-ttb3">建议并适当缩写值</h3>
+                <p>
+                    “建议并适当”是因为缩写总是会包含一系列的值，而有时候我们并不希望设置某一值，反而造成了麻烦，那么这时候你可以不缩写，而是分开写。<br>
+                    当然，在一切可以缩写的情况下，请务必缩写，它最大的好处就是节省了字节，便于维护，并使阅读更加一目了然。<br>
+                    缩写方法请查阅css手册。
+
+                </p>
+                <h3 class="u-ttb3">选择器顺序</h3>
+                <p>请综合考虑以下顺序依据：</p>
+                <ol class="m-code">
+                   <li> 从大到小（以选择器的范围为准）</li>
+                    <li>  从低到高（以等级上的高低为准）</li>
+                    <li>  从先到后（以结构上的先后为准）</li>
+                    <li>  从父到子（以结构上的嵌套为准）</li>
+                </ol>
+                <p>以下仅为简单示范：</p>
+                <ol class="m-code m-codec">
+                    <li> /* 从大到小 */</li>
+                    <li>.m-list p{<i class="i3">margin</i>:0;<i class="i3">padding</i>:0;}</li>
+                    <li>.m-list p.part{<i class="i3">margin</i>:1px;<i class="i3">padding</i>:1px;}</li>
+                    <li>/* 从低到高 */</li>
+                    <li>.m-logo a{<i class="i3">color</i>:#f00;}</li>
+                    <li>.m-logo a:hover{<i class="i3">color</i>:#fff;}</li>
+                    <li>/* 从先到后 */</li>
+                    <li>.g-hd{<i class="i3">height</i>:60px;}</li>
+                    <li>.g-bd{<i class="i3">height</i>:60px;}</li>
+                    <li>.g-ft{<i class="i3">height</i>:60px;}</li>
+                    <li>/* 从父到子 */</li>
+                    <li>.m-list{<i class="i3">width</i>:300px;}</li>
+                    <li>.m-list .itm{<i class="i3">float</i>:left;}</li>
+                </ol>
+                <h3 class="u-ttb3">选择器等级</h3>
+                <p>
+                    a = 行内样式style。<br/>
+                    b = ID选择器的数量。<br/>
+                    c = 类、伪类和属性选择器的数量。<br/>
+                    d = 类型选择器和伪元素选择器的数量。
+                </p>
+                <table class="m-table">
+                    <tbody><tr><th>选择器</th><th>等级(a,b,c,d)</th></tr>
+                    <tr><td>style=”” </td><td>1,0,0,0</td></tr>
+                    <tr><td>#wrapper #content {}</td><td>0,2,0,0</td></tr>
+                    <tr><td>#content .dateposted {}</td><td>0,1,1,0</td></tr>
+                    <tr><td>div#content {}</td><td>0,1,0,1</td></tr>
+                    <tr><td>#content p {}</td><td>0,1,0,1</td></tr>
+                    <tr><td>#content {}</td><td>0,1,0,0</td></tr>
+                    <tr><td>p.comment .dateposted {}</td><td>0,0,2,1</td></tr>
+                    <tr><td>div.comment p {}</td><td>0,0,1,2</td></tr>
+                    <tr><td>.comment p {}</td><td>0,0,1,1</td></tr>
+                    <tr><td>p.comment {}</td><td>0,0,1,1</td></tr>
+                    <tr><td>.comment {}</td><td>0,0,1,0</td></tr>
+                    <tr><td>div p {}</td><td>0,0,0,2</td></tr>
+                    <tr><td>p {}</td><td>0,0,0,1</td></tr>
+                    </tbody></table>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

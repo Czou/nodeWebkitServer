@@ -1,0 +1,55 @@
+<%- include /include/head.html %>
+<div class="g-bd">
+    <div class="g-in">
+        <div class="m-intro">
+            <h3 class="u-ttb3">前端使用工具</h3>
+            <h3 class="u-ttb3">JS/CSS合并：</h3>
+            <p>
+               使用的是windows的copy命令<br>
+               命令格式：copy 文件名1+文件名2+文件名3+文件名4 生成的文件名 /b <br/>
+               在实际使用过程中，可制作一个bat，每次需要合并双击击bat即可<br/>
+               如果你下载了源码包可在/public/js下找到合并js.bat，该bat会自动把witch.ui.show.js，witch.ui.tab.js和witch.ui.validate.js等witch UI的js合并为witch.ui.js
+            </p>
+            <h3 class="u-ttb3">前端压缩，加MD5戳，自动添加域名等请使用FIS：</h3>
+            <p>
+                FIS是百度前端研发的前端集成解决方案<br>
+                FIS基于NODE开发并且该项目已经开源<br>
+                项目地址：<a href="http://fis.baidu.com/" target="_blank">http://fis.baidu.com/</a>
+            </p>
+            <h3 class="u-ttb3">基于witch 的FIS使用</h3>
+            <p>
+                任何一个前端框架都会因为后端（如果你把NODE也看成后端的话）的使用，而产生特定的文件组织结构，witch也不例外<br/>
+                witch前端的目录结构：
+            </p>
+            <p>
+                ------- public //除了html页面（即模版页面）的所有静态文件目录<br/>
+                &nbsp;&nbsp;&nbsp;---- css //样式目录<br/>
+                &nbsp;&nbsp;&nbsp;---- js //脚本目录<br/>
+                &nbsp;&nbsp;&nbsp;---- images //图片目录<br/>
+                &nbsp;&nbsp;&nbsp;---- plug //前端使用的插件目录<br/>
+                ------- views //html页面（即模版页面）的所在的目录<br/>
+                &nbsp;&nbsp;&nbsp;---- include //通用部分，如果header和footer<br/>
+                ------ fis-config.js //fis的配置文件<br/>
+                ------ fis-index.bat //启动编译的bat<br/>
+            </p>
+            <p>注意：本站源码由于方便所以静态文件并没有加域名，但是配置文件里是有配置的，如果想测试可修改fis-index.bat 在最后没添加--domain 选项<br/>
+            实际开发中，请修改编译和输入路径
+            </p>
+            <h3 class="u-ttb3">witch开发说明</h3>
+            <p>
+               一，建立开发目录<br/>
+                ------ static //所有静态文件和模板所在文件夹，默认为static，里面为前面提到的目录结构<br/>
+                ------ witchNode //运行项目所在文件夹，自己根据需要修改名称<br/>
+               二，建立git<br/>
+                static建立一个git<br/>
+                witchNode建立一个git<br/>
+                两个git需分开，方便开发和部署<br/>
+                三，开始开发<br/>
+                开发前需了解产品原型，面向的设备和平台等，这里就不详细说明了
+            </p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

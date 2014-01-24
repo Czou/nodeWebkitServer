@@ -1,0 +1,326 @@
+<%- include /include/head.html %>
+<div class="g-bd2">
+    <div class="g-in">
+        <div class="g-sd">
+            <%- include /include/jscodenav.html %>
+        </div>
+        <div class="g-mn">
+            <div class="g-mnc">
+                <h2 class="u-ttb2">表单验证插件</h2>
+                <h3 class="u-ttb3">表单验证插件介绍</h3>
+                <p>插件文件名为：witch.ui.validate.js，自行添加引用，实际使用多个插件时请合并<br/>
+                本插件是基于jQuery的插件<br/>
+                兼容性：IE7+<br/>
+                压缩前：9KB<br/>
+                压缩后：2.7KB<br/>
+                当前版本：0.2<br>
+                   支持ajax验证<br/>
+                    支持ajax提交和form提交<br/>
+                    支持表单组<br/>
+                </p>
+
+                <h3 class="u-ttb3">使用介绍</h3>
+                <ol class="m-code m-codec">
+                   <li>$("#form1").witchValidate({</li>
+                    <li>&nbsp;&nbsp;'fields':{</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;'#input1':{</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'must':true,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'minLength':5,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'maxLength':12,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'url':'/ajax/',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focusMsg:"请输入用户名",</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errMsg:'用户名不能为空或用户名必须在5-12个字符之间'</li>
+                    <li>&nbsp;&nbsp;},</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;'#input2':{</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'must':true,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reg:'phone',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focusMsg:"请输入您的手机号码",</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errMsg:'手机号码格式不合法'</li>
+                    <li>&nbsp;&nbsp;},</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;'#input4':{</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'must':true,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'minLength':6,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'maxLength':16,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focusMsg:"请输入6-16位的密码",</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errMsg:'密码不能为空且密码须在6-16个字符之间'</li>
+                    <li>&nbsp;&nbsp;},</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;'#input5':{</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'must':true,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'minLength':6,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'maxLength':16,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'comp':'#input4',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focusMsg:"请输入6-16位的密码",</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errMsg:'密码不能为空且密码须在6-16个字符之间',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compMsg:'两次密码不一致'</li>
+                    <li>&nbsp;&nbsp;},</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;'#input6':{</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'must':true,</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'reg':'int',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focusMsg:"请输入您的年龄",</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errMsg:'请输入数字'</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+                    <li>&nbsp;&nbsp;},</li>
+                    <li>&nbsp;&nbsp;ajaxFun:function() {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.ajax({</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:'post',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url:'/ajax/ch',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success:function(msg) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//alert(msg);</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});</li>
+                    <li>&nbsp;&nbsp;}</li>
+                    <li>});</li>
+                </ol>
+
+                <h3 class="u-ttb3">参数说明</h3>
+                <p> form1：表单外层的form id，无论是ajax提交还是form提交，统一采用form的html格式，提交按钮用submit<br/>
+                       fields：表单字段集合，每个字段包含验证属性<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;must：true是必填，false为非必填<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;minLength：最小长度<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;maxLength：最大长度<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;url：ajax验证的url地址，数据是获取输入框的name属性和输入框的值，数据格式为JSON，正确为：{'state':'true'}<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;reg：正则验证，默认提供：mail(邮箱),phone（手机号码）,china（中文）,int（正整型）,qq（qq号码）,user（用户名）,post（邮编）,url（url地址）,idcade（身份证号码）,ip（IP地址），用户名为：长度在5~16之间，只能包含字符、数字和下划线，如默认没有您要使用的，可直接写正则表达式<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;comp：比较元素的id，用于比较两个元素输入的值是否一致<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;focusMsg：获取焦点时的提示信息，<font style="color:#ff0000">必须包含项，否则会忽略此元素的验证</font><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;errMsg：出错时的提示信息，<font style="color:#ff0000">必须包含项，否则会忽略此元素的验证</font><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;compMsg：比较不一致的提示信息<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;验证执行顺序为：must，lenth，reg，ajax<br/>
+                    ajaxFun：ajax提交函数，若不写此参数，则为form提交<br/>
+                </p>
+                <p>ajaxFun有两种写法，方法一：直接传递一个ajax函数</p>
+                <ol class="m-code m-codec">
+                    <li>&nbsp;&nbsp;ajaxFun:function() {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.ajax({</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:'post',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url:'/ajax/ch',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success:function(msg) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//alert(msg);</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});</li>
+                    <li>&nbsp;&nbsp;}</li>
+                </ol>
+                <p>ajaxFun有两种写法，方法二：传递一个ajax参数json，插件会自动读取表单的name和value提交给服务器端，提交方法都为：POST</p>
+                <ol class="m-code m-codec">
+                    <li>&nbsp;&nbsp;ajaxFun: {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url:'/ajax/ch',</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success:function(msg) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//alert(msg);</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error:function(msg) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//alert(msg);</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+                    <li>&nbsp;&nbsp;}</li>
+                </ol>
+                <h3 class="u-ttb3">样式说明</h3>
+                <p>
+                    每个输入框元素所在的父对象请设置：position: relative;（提示元素为了方便，统一使用了position: absolute;）<br/>
+                    默认使用的提示样式为：</p>
+                <ol class="m-code m-codec">
+                    <li>.f-validatetips{border-radius: 5px;padding:0 10px; height:22px;min-width: 100px;position: absolute;top:0px;left:218px;line-height: 22px;}</li>
+                    <li>.f-validatetips-right{background-color:#0fa6d8;}/* 输入正确的提示样式*/</li>
+                    <li>.f-validatetips-error{background-color:#FBE2E2;}/* 输入错误的提示样式 */</li>
+               </ol>
+                <h3 class="u-ttb3">提示说明</h3>
+                <p>
+                    为了方便修改提示样式，插件暴漏了提示的方法，分别为以下代码，可方便修改插件的提示函数
+                </p>
+                <ol class="m-code m-codec">
+                    <li>/**</li>
+                    <li>* 添加提示的方法</li>
+                    <li>* @param obj 表单元素的jQuery对象</li>
+                    <li>* @param type 提示信息的名称</li>
+                    <li>*/</li>
+                    <li>$.fn.witchValidate.addTips=function(obj,type) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;//清除已有提示</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;$.fn.witchValidate.removeTips(obj);</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;var _parent = obj.parent(),</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;div = '&lt;div id="' + obj.attr('id').replace('#', '') + '-validate" class="f-validatetips f-validatetips-right"&gt;' + obj.data('validate')[type] + '&lt;/div&gt;';</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;if(type.indexOf('focus')== -1) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;div=div.replace('f-validatetips-right','f-validatetips-error');</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;_parent.append(div);</li>
+                    <li>}</li>
+                    <li>/**</li>
+                    <li>* 移除提示的方法</li>
+                    <li>* @param obj 表单元素的jQuery对象</li>
+                    <li>*/</li>
+                    <li>$.fn.witchValidate.removeTips=function(obj) {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;//清除已有提示</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;$('#'+obj.attr('id')+"-validate").fadeIn('fast',function() {</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.remove();</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;});</li>
+                    <li>}</li>
+                </ol>
+                <h3 class="u-ttb3">示例演示</h3>
+                <h3 class="u-ttb3">ajax提交，用户名为ajax验证</h3>
+                <form id="form1" >
+                    <ul class="f-formul">
+                        <li>用户名：<input type="text" name="username" id="input1"/></li>
+                        <li>密码：<input type="password" name="psw" id="input4"/></li>
+                        <li>重复密码：<input type="password" name="psw2" id="input5"/></li>
+                        <li>年龄：<input type="text" name="age" id="input6"/></li>
+                        <li>邮箱：<input type="text" name="mail" id="input7"/></li>
+                        <li>手机号码：<input type="text" name="phone" id="input2"/></li>
+                        <li>出生日期：<input type="text" name="born" id="input3"/></li>
+                        <!--li>爱好：<input type="checkbox" name="love" value="音乐" id="input8"/> 音乐<input type="checkbox" name="love" value="绘画" /> 绘画<input type="checkbox" name="love" value="歌剧" /> 歌剧<input type="checkbox" name="love" value="运动" /> 运动</li-->
+                        <li>性别：<select id="input9">
+                            <option value="">请选择性别</option>
+                            <option value="0">男</option>
+                            <option value="1">女</option>
+                        </select></li>
+                        <li><input type="submit" value="提交"/> </li>
+                    </ul>
+                </form>
+                <h3 class="u-ttb3">form提交，用户名为ajax验证</h3>
+                <form id="form2" action="/ajax/adduser" method="POST">
+                    <ul class="f-formul">
+                        <li>用户名：<input type="text" name="username" id="input11"/></li>
+                        <li>密码：<input type="password" name="psw" id="input41"/></li>
+                        <li>重复密码：<input type="password" name="psw2" id="input51"/></li>
+                        <li>年龄：<input type="text" name="age" id="input61"/></li>
+                        <li>邮箱：<input type="text" name="mail" id="input71"/></li>
+                        <li>手机号码：<input type="text" name="phone" id="input21"/></li>
+                        <li>出生日期：<input type="text" name="born" id="input31"/></li>
+                        <!--li>爱好：<input type="checkbox" name="love" value="音乐" id="input81"/> 音乐<input type="checkbox" name="love" value="绘画" /> 绘画<input type="checkbox" name="love" value="歌剧" /> 歌剧<input type="checkbox" name="love" value="运动" /> 运动</li-->
+                        <li>性别：<select id="input91">
+                            <option value="">请选择性别</option>
+                            <option value="0">男</option>
+                            <option value="1">女</option>
+                        </select></li>
+                        <li><input type="submit" value="提交"/> </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/public/js/witch.ui.js"></script>
+<script>
+    $(function(){
+        $("#form1").witchValidate({
+            'fields':{
+                '#input1':{
+                    'must':true,
+                    'minLength':5,
+                    'maxLength':12,
+                    'url':'/ajax/checkuser',
+                    focusMsg:"请输入用户名",
+                    errMsg:'用户名不能为空或用户名必须在5-12个字符之间'
+                },
+                '#input2':{
+                    'must':true,
+                    reg:'phone',
+                    focusMsg:"请输入您的手机号码",
+                    errMsg:'手机号码格式不合法'
+                },
+                '#input3':{
+                    'must':true,
+                    focusMsg:"请填写您的出生日期，如：1986-10-12",
+                    errMsg:'出生日期格式不合法'
+                },
+                '#input4':{
+                    'must':true,
+                    'minLength':6,
+                    'maxLength':16,
+                    focusMsg:"请输入6-16位的密码",
+                    errMsg:'密码不能为空且密码须在6-16个字符之间'
+                },
+                '#input5':{
+                    'must':true,
+                    'minLength':6,
+                    'maxLength':16,
+                    'comp':'#input4',
+                    focusMsg:"请输入6-16位的密码",
+                    errMsg:'密码不能为空且密码须在6-16个字符之间',
+                    compMsg:'两次密码不一致'
+                },
+                '#input6':{
+                    'must':true,
+                    'reg':'int',
+                    focusMsg:"请输入您的年龄",
+                    errMsg:'请输入数字'
+                },
+                '#input7':{
+                    'must':false,
+                    reg:'mail',
+                    focusMsg:"请输入您的邮箱",
+                    errMsg:'邮箱格式不合法'
+                },
+                '#input9':{
+                    'must':true,
+                    focusMsg:"请选择性别",
+                    errMsg:'您还未选择性别'
+                }
+            },
+            ajaxFun:{
+                url: '/ajax/chform',
+                success: function (msg) {
+                    alert(msg);
+                },
+                error:function() {
+                    alert('网络错误请重试');
+                }
+            }
+        });
+        $("#form2").witchValidate({
+            'fields':{
+                '#input11':{
+                    'must':true,
+                    'minLength':5,
+                    'maxLength':12,
+                    'url':'/ajax/checkuser',
+                    focusMsg:"请输入用户名",
+                    errMsg:'用户名不能为空或用户名必须在5-12个字符之间'
+                },
+                '#input21':{
+                    'must':true,
+                    reg:'phone',
+                    focusMsg:"请输入您的手机号码",
+                    errMsg:'手机号码格式不合法'
+                },
+                '#input31':{
+                    'must':true,
+                    focusMsg:"请填写您的出生日期，如：1986-10-12",
+                    errMsg:'出生日期格式不合法'
+                },
+                '#input41':{
+                    'must':true,
+                    'minLength':6,
+                    'maxLength':16,
+                    focusMsg:"请输入6-16位的密码",
+                    errMsg:'密码不能为空且密码须在6-16个字符之间'
+                },
+                '#input51':{
+                    'must':true,
+                    'minLength':6,
+                    'maxLength':16,
+                    'comp':'#input41',
+                    focusMsg:"请输入6-16位的密码",
+                    errMsg:'密码不能为空且密码须在6-16个字符之间',
+                    compMsg:'两次密码不一致'
+                },
+                '#input61':{
+                    'must':true,
+                    'reg':'int',
+                    focusMsg:"请输入您的年龄",
+                    errMsg:'请输入数字'
+                },
+                '#input71':{
+                    'must':false,
+                    reg:'mail',
+                    focusMsg:"请输入您的邮箱",
+                    errMsg:'邮箱格式不合法'
+                },
+                '#input91':{
+                    'must':true,
+                    focusMsg:"请选择性别",
+                    errMsg:'您还未选择性别'
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
