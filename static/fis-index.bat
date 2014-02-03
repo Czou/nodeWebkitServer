@@ -1,4 +1,4 @@
 @ECHO ON
-cd F:\NodeJs\witchNorm\static
-fis release --md5 --dest F:\NodeJs\witchNorm\witchNode\ -o -w 
+cd F:\nodejs\nodeWebkitServer\static
+fis release --md5 --dest F:\nodejs\nodeWebkitServer\server\ -w
 pause
