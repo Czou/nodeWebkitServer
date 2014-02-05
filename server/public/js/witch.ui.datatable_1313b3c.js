@@ -1,0 +1,1 @@
+!function(t){t.fn.witchDataTable=function(e){function a(){var t="<thead><tr>",a=e.thead;for(key in a)t+='<th style="width:'+a[key]+'">'+key+"</th>";t+="</tr></thead>";e.data;t+="<tbody>",t+="</tbody>",n.append(t)}var d={thead:{}},e=t.extend(d,e),n=this;a()}}(jQuery);

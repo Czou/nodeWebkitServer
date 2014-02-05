@@ -1,0 +1,1 @@
+function witchDataTable(t){function a(){var a="<thead><tr>",r=t.thead;for(var i in r)a+='<th style="width:'+r[i]+'">'+i+"</th>";a+="</tr></thead>";var n=t.data,e=d.data("line");a+="<tbody>";for(var h in n)a+="<tr><td>"+e+"</td><td>"+h+"</td><td>"+n[h]+"</td></tr>",d.data("line",++e);a+="</tbody>",d.append(a)}var d=this;d.data("line",1),a()}

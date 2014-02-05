@@ -1,7 +1,7 @@
 {
     "res": {
         "public/css/reset.css": {
-            "uri": "/css/reset_74212fa.css",
+            "uri": "/css/reset_e3853f9.css",
             "type": "css"
         },
         "public/js/common.js": {
@@ -25,7 +25,7 @@
             "type": "js"
         },
         "public/js/witch.ui.datatable.js": {
-            "uri": "/js/witch.ui.datatable_817389a.js",
+            "uri": "/js/witch.ui.datatable_d642462.js",
             "type": "js"
         },
         "public/js/witch.ui.js": {
@@ -41,7 +41,7 @@
             "type": "js"
         },
         "public/js/witch.ui.validate.js": {
-            "uri": "/js/witch.ui.validate_4bdc9ed.js",
+            "uri": "/js/witch.ui.validate_1ab8359.js",
             "type": "js"
         }
     },

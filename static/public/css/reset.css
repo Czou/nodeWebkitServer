@@ -46,8 +46,21 @@ a,a:hover{color:#4682b4;}
 .m-nav-1 a{color:#fff;display: inline-block;width:100px;height:30px;text-align: center;}
 .m-nav-1 .a{background-color:#2576B0; }
 
+.m-rmenu{min-width: 70px;background-color: #ffffff;position: absolute;box-shadow: 2px 2px 5px #aaa;display: none;border:1px solid #aaaaaa;}
+.m-rmenu li{padding:4px 10px;cursor: pointer;}
+.m-rmenu li:hover{background-color: #aaaaaa;}
+
+/* form */
+.m-form{}
+.m-form ul{list-style: none;margin:30px;}
+.m-form ul li{height:30px;margin: 5px;position: relative;}
+.m-form ul li input{height:20px;line-height: 20px;}
+.f-validatetips {border-radius: 5px; height: 22px; left: 218px;line-height: 22px; min-width: 100px;padding: 0 10px; position: absolute;top: 0;}
+.f-validatetips-right { background-color: #0FA6D8;}
+.f-validatetips-error { background-color: #FBE2E2;}
 /*data table*/
-.m-table{width: 100%;min-height: 100px;}
+.m-tabletitle{padding:10px 10px;}
+.m-table{width: 98%;min-height: 100px;margin-left:10px;}
 .m-table thead{width:100px;height: 30px;background: -moz-linear-gradient( top,#61b3e3,#3080bb);background:-webkit-gradient(linear,0 0,0 100%,from(#61b3e3), to(#3080bb));}
 .m-table thead th{text-align: center;color:#fff;border:1px solid #999;}
 .m-table tbody td{padding:3px;border:1px solid #999;}

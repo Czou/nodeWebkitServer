@@ -44,9 +44,15 @@ userApi.login = function(userName, password,callback){
 }
 
 userApi.insert=function(userInfo,callback){
-    User.insert(userInfo,function(err){
-        callback(err);
+    User.insert(userInfo,function(err,doc){
+        callback(err,doc);
     })
+}
+
+userApi.page = function(kw,cp,callback) {
+    User.page(kw,cp,function(err,rows) {
+        callback(err,rows);
+    });
 }
 
 

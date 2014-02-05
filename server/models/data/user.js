@@ -6,32 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 
-//用户数据 mongodb 访问层
-var mongo = require('../../lib/mongo.js'),
-    schema=mongo.mongoose.Schema;
-
-var userSchema=new schema({//数据模型定义
-        userName:String,
-        password:String
-    });
-
-var user=mongo.mongoose.model('users',userSchema);//实际意义的数据模型
-
-var User= {
-       generr:'user id generate error'
-    };
+var User={},
+    sqlite3=require('sqlite3').verbose(),
+    db=new sqlite3.Database('data.sqlite');
 /**
  * 创建新用户
  * @param userInfo
  * @param callback
  */
 User.insert = function(userInfo, callback){
-    var instan=new user(userInfo);//根据模型创建实体
-    instan.save(function(err){
-       callback(err);
+    db.serialize(function() {
+        db.run("INSERT into user (userName,password,phone) values ('"+userInfo.userName+"','"+userInfo.Password+"','"+userInfo.Phone+"')");
+       db.get("select last_insert_rowid() id",function(err,doc) {
+            callback(err,doc);
+        });
     });
 }
 
+/**
+ * 获取用户列表
+ * @param kw
+ * @param cp
+ * @param callback
+ */
+User.page = function(kw,cp,callback) {
+    db.all("select * from [user] where userName != 'root'",function(err,rows) {
+        callback(err,rows);
+    });
+}
 /*
  获取某个用户的注册信息
  需要提供参数 userId
