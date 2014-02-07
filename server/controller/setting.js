@@ -28,6 +28,7 @@ home.adduser=function(req,res) {
     res.render('form/adduser');
 }
 
+/* 添加新用户 */
 home.auser=function(req,res) {
     var userInfo={
         userName:tools.xssFilter(req.body.username),
@@ -43,5 +44,29 @@ home.auser=function(req,res) {
     });
 }
 
+home.updatepassword=function(req,res) {
+	res.render('form/updatepassword');
+}
+
+/** 更新用户密码 **/
+home.uppassword=function(req,res) {
+	userApi.upPassword(tools.xssFilter(req.query.id),tools.xssFilter(req.body.password));
+	res.send('true');
+}
+
+/**
+ * 删除用户
+ * @param req
+ * @param res
+ */
+home.del=function(req,res) {
+	userApi.del(tools.xssFilter(req.body.id));
+	res.send('true');
+}
+
+/************* custom *****************/
+home.custom=function(req,res) {
+	res.render("custom");
+}
 
 module.exports = home;

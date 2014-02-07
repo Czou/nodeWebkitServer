@@ -22,20 +22,41 @@
                 width: '100px'
             },
             {
-                name: '职员姓名',
+                name: '联系人',
                 width: '100px',
                 validate: {
                     must:true
                 }
             },
             {
-                 name: '手机号',
-                 width: '100px',
+                 name: '单位名称',
+                 width: '500px',
                  validate: {
                      must: true,
                      reg: 'phone'
                  }
-            }
+            },
+            {
+                name: '手机',
+                width: '100px',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '固话',
+                width: '100px',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '所在地区',
+                width: '100px',
+                validate: {
+                    must:true
+                }
+            },
         ],
         data:{
             url:'/userajax/page'

@@ -9,23 +9,27 @@
             "type": "js"
         },
         "public/js/jquery-1.7.1.min.js": {
-            "uri": "/js/jquery-1.7.1.min_db2ccce.js",
+            "uri": "/js/jquery-1.7.1.min_ddb84c1.js",
             "type": "js"
         },
         "public/js/jquery-1.8.0.min.js": {
-            "uri": "/js/jquery-1.8.0.min_cd8b0bf.js",
+            "uri": "/js/jquery-1.8.0.min_3a72846.js",
             "type": "js"
         },
         "public/js/jquery.corner.js": {
-            "uri": "/js/jquery.corner_e57103e.js",
+            "uri": "/js/jquery.corner_0389ddc.js",
             "type": "js"
         },
         "public/js/store+json2.min.js": {
-            "uri": "/js/store+json2.min_317976e.js",
+            "uri": "/js/store+json2.min_d402f77.js",
+            "type": "js"
+        },
+        "public/js/witch.tool.js": {
+            "uri": "/js/witch.tool_c6367bd.js",
             "type": "js"
         },
         "public/js/witch.ui.datatable.js": {
-            "uri": "/js/witch.ui.datatable_d642462.js",
+            "uri": "/js/witch.ui.datatable_04fded3.js",
             "type": "js"
         },
         "public/js/witch.ui.js": {

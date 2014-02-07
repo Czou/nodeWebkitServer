@@ -24,6 +24,22 @@ User.insert = function(userInfo, callback){
 }
 
 /**
+ * 修改某个用户密码
+ * @param id  用户id
+ * @param password 用户密码
+ */
+User.upPassword=function(id,password) {
+	db.run("update user set password = ? where id = ?",[password,id]);
+}
+
+/**
+ * 删除用户
+ * @param id 用户id
+ */
+User.del=function(id) {
+	db.run("delete from user where id = ?",[id]);
+}
+/**
  * 获取用户列表
  * @param kw
  * @param cp

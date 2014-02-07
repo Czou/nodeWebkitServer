@@ -11,9 +11,9 @@
      <li onclick="updatePwd(this);">修改密码</li>
      <li  onclick="del(this);">删除</li>
  </ul>
-<script src="/js/jquery-1.8.0.min_3a72846.js"></script>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
 <script src="/plug/layer/layer.min.js"></script>
-<script src="/js/witch.ui.datatable_04fded3.js"></script>
+<script src="/public/js/witch.ui.datatable.js"></script>
 <script>
     var table=new witchDataTable('#user',{
         thead: [
@@ -22,20 +22,41 @@
                 width: '100px'
             },
             {
-                name: '职员姓名',
+                name: '联系人',
                 width: '100px',
                 validate: {
                     must:true
                 }
             },
             {
-                 name: '手机号',
-                 width: '100px',
+                 name: '单位名称',
+                 width: '500px',
                  validate: {
                      must: true,
                      reg: 'phone'
                  }
-            }
+            },
+            {
+                name: '手机',
+                width: '100px',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '固话',
+                width: '100px',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '所在地区',
+                width: '100px',
+                validate: {
+                    must:true
+                }
+            },
         ],
         data:{
             url:'/userajax/page'

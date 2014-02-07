@@ -17,6 +17,7 @@
     "log4js":"*",
     "redis":"*",
     "generic-pool":"*",
-    "async":"*"
+    "async":"*",
+		"sqlite3": "*"
   }
 }

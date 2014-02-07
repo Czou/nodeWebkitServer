@@ -54,6 +54,16 @@ userApi.page = function(kw,cp,callback) {
         callback(err,rows);
     });
 }
+/**
+ * 更新用户密码
+ * @type {document.password|connection.password|*|object.auth.password|password|config.password}
+ */
+userApi.upPassword = function(id,password) {
+	User.upPassword(id,password);
+}
 
+userApi.del = function(id) {
+	User.del(id);
+}
 
 module.exports = userApi;
