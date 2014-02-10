@@ -23,4 +23,9 @@ home.page = function(req,res) {
     });
 }
 
+home.update = function(req,res) {
+  userApi.update(tools.xssFilter(req.body.id),tools.xssFilter(req.body.k),tools.xssFilter(req.body.v));
+	 res.send('true');
+}
+
 module.exports = home;

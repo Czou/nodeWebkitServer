@@ -62,6 +62,10 @@ userApi.upPassword = function(id,password) {
 	User.upPassword(id,password);
 }
 
+userApi.update = function(id, key, value) {
+	User.update(id, key, value);
+}
+
 userApi.del = function(id) {
 	User.del(id);
 }

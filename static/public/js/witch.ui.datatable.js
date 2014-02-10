@@ -43,7 +43,7 @@
                         thead+='<tr id="'+d['id']+'"><td>'+line+'</td>';
                         for(var dk in d) {
                             if(dk != 'id') {
-                              thead+='<td class="uname '+d[dk]+'">'+dk+'</td>';
+                              thead+='<td class="'+d[dk]+'">'+dk+'</td>';
                             }
                         }
                         thead += '<td></td></tr>';
@@ -54,7 +54,7 @@
                     _dom.append(thead);
                     _dom.find('th').each(function(i) {//添加表单验证规则
                         if(theadOp[i]) {
-                            $(this).data('validate',theadOp[i].validate);
+                            $(this).data('validate',theadOp[i].validate).data('edit',theadOp[i].edit);
                         }
                     });
                     _self.addMenu();
@@ -134,11 +134,29 @@
         o.unbind();
         input.bind('blur',function() {
             if(checkValidate(o.index(), input.val(),o)) {
-                var oo=$(this);
-                oo.parent().html(oo.val());
-                o.bind('dblclick',function() {
-                    editTd(o);
-                });
+							if(o.data('d') !== input.val()) {
+								var oo=$(this);
+								$.ajax({
+									 type: "post",
+									 url: options.update.url,
+									 data: "k=" + _dom.find('th:eq(' +  o.index() + ')').data('edit') + "&v=" + input.val() + "&id=" + o.parent().attr('id') ,
+									 success: function(msg) {
+										 oo.parent().html(oo.val());
+										 o.bind('dblclick',function() {
+											 editTd(o);
+										 });
+									 },
+									error: function() {
+										layer.alert("修改失败，请稍后重试");
+									}
+								});
+							}
+							else {
+								oo.parent().html(oo.val());
+								o.bind('dblclick',function() {
+									editTd(o);
+								});
+							}
             }
         });
     }
@@ -158,7 +176,7 @@
                     }
                 }
                 else {
-                    if(!(value.reg.test(val))) {
+                    if(!(validate.reg.test(val))) {
                         _isValid=false;
                     }
                 }

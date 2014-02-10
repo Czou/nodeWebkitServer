@@ -11,6 +11,7 @@ var home = {},
 	redisCache=require('../lib/redisApi.js'),
 	tools=require('../lib/tools.js'),
 	userApi=require('../models/userApi.js'),
+	customApi=require('../models/customApi.js'),
 	config=require('../config/config.js'),
 	async=require('async');
 
@@ -28,6 +29,12 @@ home.adduser=function(req,res) {
     res.render('form/adduser');
 }
 
+//显示添加客户的页面
+home.addcustom=function(req,res) {
+	res.render('form/addcustom');
+}
+
+
 /* 添加新用户 */
 home.auser=function(req,res) {
     var userInfo={
@@ -43,6 +50,25 @@ home.auser=function(req,res) {
        res.send(doc);
     });
 }
+
+/* 添加新客户 */
+home.acustom=function(req,res) {
+	var customInfo = {
+		user:tools.xssFilter(req.body.username),
+		phone:tools.xssFilter( req.body.phone),
+		telphone: tools.xssFilter(req.body.telphone),
+		area: tools.xssFilter(req.body.area),
+		company: tools.xssFilter(req.body.company)
+	};
+	customApi.insert(customInfo,function(err,doc) {
+		if(err) {
+			res.send(err);
+			return;
+		}
+		res.send(doc);
+	});
+}
+
 
 home.updatepassword=function(req,res) {
 	res.render('form/updatepassword');

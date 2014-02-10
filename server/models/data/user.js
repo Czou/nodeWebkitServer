@@ -33,6 +33,17 @@ User.upPassword=function(id,password) {
 }
 
 /**
+ * 修改字段
+ * @param id  id
+ * @param key 字段
+ * @param value 字段的值
+ */
+User.update = function(id, key, value) {
+	db.run("update user set "+key+" = ? where id = ?",[value,id]);
+}
+
+
+/**
  * 删除用户
  * @param id 用户id
  */
