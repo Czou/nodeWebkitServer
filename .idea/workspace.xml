@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c54aa9e-97ec-48ea-8ea8-efc5431fdb15" name="Default" comment="">
-      <change type="DELETED" beforePath="F:\NodeJs\nodeWebkitServer\static\public\js\jquery-1.7.1.min.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/views/custom.html" afterPath="$PROJECT_DIR$/server/views/custom.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/map.json" afterPath="$PROJECT_DIR$/server/map.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/nodeWebkitServer.iml" afterPath="$PROJECT_DIR$/.idea/nodeWebkitServer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/views/setting.html" afterPath="$PROJECT_DIR$/server/views/setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/views/setting.html" afterPath="$PROJECT_DIR$/static/views/setting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/views/user.html" afterPath="$PROJECT_DIR$/server/views/user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/views/user.html" afterPath="$PROJECT_DIR$/static/views/user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/public/js/witch.ui.datatable.js" afterPath="$PROJECT_DIR$/static/public/js/witch.ui.datatable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="nodeWebkitServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,7 +98,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="7" selection-start="130" selection-end="130" vertical-scroll-proportion="0.6442167" vertical-offset="0" max-vertical-offset="683">
+            <state line="39" column="0" selection-start="294" selection-end="294" vertical-scroll-proportion="0.93557835" vertical-offset="219" max-vertical-offset="990">
               <folding />
             </state>
           </provider>
@@ -792,7 +782,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="7" selection-start="130" selection-end="130" vertical-scroll-proportion="0.6442167" vertical-offset="0" max-vertical-offset="683">
+        <state line="39" column="0" selection-start="294" selection-end="294" vertical-scroll-proportion="0.93557835" vertical-offset="219" max-vertical-offset="990">
           <folding />
         </state>
       </provider>
