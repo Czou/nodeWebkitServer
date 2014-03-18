@@ -11,5 +11,10 @@
 
 <%- include /include/footermenu.html%>
 <script src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/public/js/ejs.js"></script>
+<script>
+    var html = new EJS({url: 'test.ejs'});
+    alert(html);
+</script>
 </body>
 </html>

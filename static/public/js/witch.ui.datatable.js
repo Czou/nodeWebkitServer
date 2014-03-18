@@ -134,8 +134,8 @@
         o.unbind();
         input.bind('blur',function() {
             if(checkValidate(o.index(), input.val(),o)) {
+							var oo=$(this);
 							if(o.data('d') !== input.val()) {
-								var oo=$(this);
 								$.ajax({
 									 type: "post",
 									 url: options.update.url,
