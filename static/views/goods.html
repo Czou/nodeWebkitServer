@@ -1,6 +1,6 @@
 <%- include /include/head.html %>
  <div class="m-tabletitle">
-     <input id="input"> <button id="search">搜索</button> <button id="adduser">添加新客户</button>
+     <input id="input"> <button id="search">搜索</button> <button id="adduser">添加新商品</button>
  </div>
  <table id="user" class="m-table">
 
@@ -21,61 +21,75 @@
                 width: '30px'
             },
             {
-                name: '联系人',
-                width: '100px',
-                edit: 'user',
+                name: '商品名称',
+                width: '200px',
+                edit: 'name',
                 validate: {
                     must:true
                 }
             },
             {
-                name: '手机',
-                width: '100px',
-                edit: 'phone',
+                name: '规格',
+                width: '200px',
+                edit: 'norms',
                 validate: {
-                    must:false,
-                    reg: 'phone'
+                    must:false
                 }
             },
             {
-                name: '固话',
+                name: '单位',
                 width: '100px',
-                edit: 'telphone',
+                edit: 'unit',
                 validate: {
-                    must:false,
-                    'reg': /(\d{2,5}-\d{7,8}(-\d{1,})?)|(13\d{9})|(159\d{8})/
+                    must:false
                 }
             },
             {
-                name: '单位名称',
-                width: '500px',
-                edit: 'company',
+                name: '辅单位',
+                width: '100px',
+                edit: 'assist',
+                validate: {
+                    must:false
+                }
+            },
+            {
+                name: '进价',
+                width: '40px',
+                edit: 'price',
                 validate: {
                     must: true
                 }
             },
             {
-                name: '所在地区',
+                name: '预售价格',
                 width: '100px',
-                edit: 'area',
+                edit: 'sale',
                 validate: {
                     must:true
                 }
             },
             {
-                name: "物流",
+                name: '库存',
                 width: '100px',
-                edit: 'express',
+                edit: 'number',
+                validate: {
+                    must:true
+                }
+            },
+            {
+                name: '库存(辅)',
+                width: '100px',
+                edit: 'assistNumber',
                 validate: {
                     must:true
                 }
             }
         ],
         data:{
-            url:'/customajax/page'
+            url:'/setting/goods/page'
         },
         update:{
-          url: '/customajax/update'
+          url: '/setting/goods/update'
         },
         search:{
             id :'#search',
@@ -83,8 +97,8 @@
         },
         add: {
             id: '#adduser',
-            url:'/setting/addcustom',
-            name: '添加用户'
+            url:'/setting/goods/addgoods',
+            name: '添加新商品'
         },
         rmenu: {
             id: '#youmenu'
