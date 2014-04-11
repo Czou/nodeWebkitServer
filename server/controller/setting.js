@@ -58,7 +58,8 @@ home.acustom=function(req,res) {
 		phone:tools.xssFilter( req.body.phone),
 		telphone: tools.xssFilter(req.body.telphone),
 		area: tools.xssFilter(req.body.area),
-		company: tools.xssFilter(req.body.company)
+		company: tools.xssFilter(req.body.company),
+		express: tools.xssFilter(req.body.express)
 	};
 	customApi.insert(customInfo,function(err,doc) {
 		if(err) {
@@ -69,7 +70,7 @@ home.acustom=function(req,res) {
 	});
 }
 
-
+/** 更新用户密码UI **/
 home.updatepassword=function(req,res) {
 	res.render('form/updatepassword');
 }
@@ -95,4 +96,7 @@ home.custom=function(req,res) {
 	res.render("custom");
 }
 
+home.goods = function(req,res) {
+	res.render('goods');
+}
 module.exports = home;

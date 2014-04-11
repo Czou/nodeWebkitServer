@@ -8,33 +8,34 @@ var config=require('../config/config.js'),
     tools=require('../lib/tools.js');
 
 module.exports=function(app){
-    app.all('*',function(req,res){
-      try{
-           var upath=req.path,
-               urlpath=upath.split('/'),
-               len=0;
+	app.all('*', function (req, res) {
+		try {
+			var upath = req.path,
+				urlpath = upath.split('/');
 
-          if(upath.indexOf('.')>-1||urlpath.length>5){
-               res.render('error',{'error':'这是一个错误地址'});
-              return;
-          }
-           urlpath.shift();
-          len=urlpath.length;
-           if(urlpath[len-1]===''){urlpath.pop();}
-           if(upath==='/'){urlpath=new Array('index','index');}
-           if(urlpath.length===1){ urlpath.push('index');}
-         /* if(urlpath[0]!='index'){//除了index页面，其他页面均需要权限判断//整站安全策略在此处理//需要规定某些页面可在url中添加标识
-              var uid =req.cookies.id,
-                  key=req.cookies.ckey;
-              if(!uid||tools.md5(uid+config.keySalt)!=key) {
-                  return  res.redirect('/');
-              }
-          }*/
-          //console.log(urlpath.join('/'));
-          require('../controller/'+urlpath[0])[urlpath[1]](req, res);
-        }
-        catch(err){
-             res.render('error',{'error':err.toString()});
-        }
-    });
+			console.log(upath);
+			if (upath.indexOf('.') > -1 || urlpath.length > 5 || upath.indexOf('//') > -1) {
+				res.send('error', {'error': '这是一个错误地址'});
+				return;
+			}
+
+			var len = urlpath.length;
+			if(urlpath[len - 1] == '') {
+				urlpath.pop();
+				if(len < 4){
+					len = urlpath.push('index');
+				}
+			}
+			if(len === 2) {
+				urlpath = ['',urlpath.pop(),'index'];
+			}
+
+			var last=urlpath.pop();
+			//console.log('end:' + '../controller'+ urlpath.join('/') +'.js' + ' ' + last);
+			require('../controller' + urlpath.join('/') + ".js")[last](req, res);
+		}
+		catch (err) {
+			res.send('error', {'error': err.toString()});
+		}
+	});
 }
