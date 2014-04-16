@@ -35,4 +35,8 @@ customApi.del = function(id) {
 	Custom.del(id);
 }
 
+customApi.get = function(uname, callback) {
+	Custom.get(uname, callback);
+}
+
 module.exports = customApi;

@@ -7,8 +7,10 @@
  * --------------------------------------------------------
  */
 var goodApi = {},
-	Goods= require('./data/goods.js')
+	Goods= require('./data/goods.js'),
+	userGood= require('./data/usergood.js'),
 config=require('../config/config.js'),
+	async=require('async'),
 	md5 =require('../lib/tools').md5;
 
 
@@ -21,6 +23,25 @@ goodApi.insert=function(goodsInfo,callback){
 goodApi.page = function(kw,cp,callback) {
 	Goods.page(kw,cp,function(err,rows) {
 		callback(err,rows);
+	});
+}
+
+goodApi.pageName = function(kw,cp,callback) {
+	Goods.pageName(kw,cp,function(err,rows) {
+		callback(err,rows);
+	});
+}
+
+goodApi.getByName = function(name, uid, callback) {
+	async.parallel([
+		function(cb){userGood.getByName(name,uid,cb)},
+		function(cb){Goods.getByName(name,cb)}
+	],function(err,results) {
+		callback(err,results);
+	});
+
+	Goods.getByName(name,function(err,doc) {
+		callback(err,doc);
 	});
 }
 /**

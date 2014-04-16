@@ -1,13 +1,17 @@
 
 var home = {},
-    redisCache=require('../lib/redisApi.js'),
-    tools=require('../lib/tools.js'),
-    userApi=require('../models/userApi.js'),
-    config=require('../config/config.js'),
-    async=require('async');
+    tools = require('../lib/tools.js'),
+    userApi = require('../models/userApi.js'),
+    config = require('../config/config.js'),
+		objectid = require('objectid'),
+    async = require('async');
 
 home.index = function(req, res){
     res.render('ordernav');
+}
+
+home.addorder = function(req, res) {
+	res.render('addorder',{'title': '新增订单','objid': objectid().toString().toUpperCase()});
 }
 
 home.order = function(req, res) {

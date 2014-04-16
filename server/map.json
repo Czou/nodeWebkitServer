@@ -1,11 +1,11 @@
 {
     "res": {
         "public/css/reset.css": {
-            "uri": "/css/reset_e3853f9.css",
+            "uri": "/css/reset_a75de15.css",
             "type": "css"
         },
         "public/js/common.js": {
-            "uri": "/js/common_42379e5.js",
+            "uri": "/js/common_6184696.js",
             "type": "js"
         },
         "public/js/ejs.js": {
@@ -28,8 +28,16 @@
             "uri": "/js/witch.tool_c6367bd.js",
             "type": "js"
         },
+        "public/js/witch.ui.autoComplete.js": {
+            "uri": "/js/witch.ui.autoComplete_11b92ee.js",
+            "type": "js"
+        },
         "public/js/witch.ui.datatable.js": {
             "uri": "/js/witch.ui.datatable_6cc97fe.js",
+            "type": "js"
+        },
+        "public/js/witch.ui.datatable.order.js": {
+            "uri": "/js/witch.ui.datatable.order_fb02ed3.js",
             "type": "js"
         },
         "public/js/witch.ui.js": {

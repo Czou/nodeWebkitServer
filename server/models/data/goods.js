@@ -52,5 +52,28 @@ Goods.page = function(kw,cp,callback) {
 	});
 }
 
+/**
+ * 获取商品列表名称
+ * @param kw
+ * @param cp
+ * @param callback
+ */
+Goods.pageName = function(kw,cp,callback) {
+	var kws = kw.split(' ');
+	var query ='';
+	for(var i=0;i<kws.length;i++) {
+		query += "[name] like '%"+kws[i]+"%' and ";
+	}
+	query=query.substring(0,query.length - 4);
+	db.all("select DISTINCT [name] from [goods] where " + query +' limit 6',function(err,rows) {
+		callback(err,rows);
+	});
+}
+
+Goods.getByName = function(name, callback) {
+	db.all('SELECT * FROM [goods] where name=? ',[name],function(err,doc) {
+		callback(err,doc);
+	});
+}
 
 module.exports = Goods;

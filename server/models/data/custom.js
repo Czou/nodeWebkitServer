@@ -47,10 +47,15 @@ Custom.del=function(id) {
  * @param callback
  */
 Custom.page = function(kw,cp,callback) {
-	db.all("select * from [custom]",function(err,rows) {
+	db.all("select * from [custom] where [user] like '%"+kw+"%' limit 6",function(err,rows) {
 		callback(err,rows);
 	});
 }
-
+/* 获取某个客户资料 */
+Custom.get = function(uname, callback) {
+	db.get('SELECT * FROM [custom] where user=? ',[uname],function(err,doc) {
+		callback(err,doc);
+	});
+}
 
 module.exports = Custom;
