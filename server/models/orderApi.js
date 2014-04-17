@@ -14,11 +14,11 @@ var orderApi = {},
 orderApi.insert = function(orderInfo,callback){
 	Order.insert(orderInfo,function(err,doc){
 		callback(err,doc);
-	})
+	});
 }
 
-orderApi.page = function(kw,cp,callback) {
-	Order.page(kw,cp,function(err,rows) {
+orderApi.page = function(uid,time,cp, state, callback) {
+	Order.page(uid, time, cp, state, function(err,rows) {
 		callback(err,rows);
 	});
 }

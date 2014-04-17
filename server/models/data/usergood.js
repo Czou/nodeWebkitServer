@@ -7,17 +7,40 @@
  */
 
 var userGood={},
+	async =  require('async'),
 	sqlite3=require('sqlite3').verbose(),
 	db=new sqlite3.Database('data.sqlite');
+
 /**
- * 创建新商品
+ * 更新用户商品价格记录
+ * @param uid
  * @param goodsInfo
- * @param callback
  */
 userGood.insert = function(uid,goodsInfo){
-	db.serialize(function() {
+	/*db.serialize(function() {
 		db.run("INSERT into [usergood] (uid,name,unit,sale,norms) values ("+uid+",'"+goodsInfo.name+"','"+goodsInfo.unit+"',"+goodsInfo.sale+",'"+goodsInfo.norms+"')");
+	});*/
+
+	async.waterfall([
+		function(cb) {
+			db.get('SELECT * FROM [usergood] where uid=? and name=? and unit=? and norms=? ',[uid, goodsInfo.name, goodsInfo.unit, goodsInfo.norms],function(err,doc) {
+				cb(err,doc);
+			});
+		},
+		function(doc, cb) {
+			if(doc) {//记录存在
+				if(doc.sale != goodsInfo.sale) { //价格发生变化,则更新记录
+					db.run("update usergood set sale=? where id = ?",[goodsInfo.sale, doc.id]);
+				}
+			}
+			else { //添加记录
+				db.run("INSERT into [usergood] (uid,name,unit,sale,norms) values ("+uid+",'"+goodsInfo.name+"','"+goodsInfo.unit+"',"+goodsInfo.sale+",'"+goodsInfo.norms+"')");
+			}
+		}
+	],function(err, results) {
+
 	});
+
 }
 
 /**

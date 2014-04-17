@@ -1,7 +1,9 @@
 <%- include /include/head.html %>
  <div class="m-tabletitle">
-    收货人：<input id="shouhuoren"/>&nbsp;&nbsp;地区：<input id="area" />&nbsp;&nbsp;物流：<input id="express"/>&nbsp;&nbsp;电话：<input id="phone"/>&nbsp;&nbsp;日期：<input id="time"/><br/>
-   说明：<input  id="des" style="width:500px;"/>&nbsp;&nbsp;订单编号：<span id="orderid"><%= objid%></span>&nbsp;&nbsp;合计金额：<span id="jine" style="font-weight: 900;color:red;font-size:20px;">0</span>&nbsp;&nbsp;<button onclick="saveOrder();">保存订单</button>
+
+        收货人：<input id="shouhuoren"/>&nbsp;&nbsp;地区：<input id="area" />&nbsp;&nbsp;物流：<input id="express"/>&nbsp;&nbsp;电话：<input id="phone"/>&nbsp;&nbsp;日期：<input id="time"/><br/>
+       说明：<input  id="des" style="width:500px;"/>&nbsp;&nbsp;订单编号：<span id="orderid"><%= objid%></span>&nbsp;&nbsp;合计金额：<span id="jine" style="font-weight: 900;color:red;font-size:20px;">0</span>&nbsp;&nbsp;<button onclick="saveOrder(0);" >保存订单</button><button onclick="saveOrder(1);" >保存并新增订单</button>
+
  </div>
  <table id="user" class="m-table">
 
@@ -14,6 +16,7 @@
 <script src="/public/js/jquery-1.8.0.min.js"></script>
 <script src="/plug/layer/layer.min.js"></script>
 <script src="/public/js/witch.ui.datatable.js"></script>
+<script src="/public/js/witch.ui.validate.js"></script>
 <script src="/public/js/witch.ui.autoComplete.js"></script>
 <script src="/public/js/witch.ui.datatable.order.js"></script>
 <script src="/public/js/common.js"></script>
@@ -178,18 +181,6 @@
         ],
         data:{
             url:'/customajax/page'
-        },
-        update:{
-          url: '/customajax/update'
-        },
-        search:{
-            id :'#search',
-            input: '#input'
-        },
-        add: {
-            id: '#adduser',
-            url:'/setting/addcustom',
-            name: '添加用户'
         },
         rmenu: {
             id: '#youmenu'

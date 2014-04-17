@@ -8,6 +8,7 @@
 
 var Order={},
 	userGood=require('./usergood.js'),
+	tools =  require('../../lib/tools.js'),
 	sqlite3=require('sqlite3').verbose(),
 	db=new sqlite3.Database('data.sqlite');
 /**
@@ -17,14 +18,16 @@ var Order={},
  */
 Order.insert = function(orderInfo, callback){
 	db.serialize(function() {
-		db.run("INSERT into [order] (uid,goods,orderid,express,des,jine,phone) values ("+orderInfo.uid+",'"+JSON.stringify(orderInfo.goods)+"','"+orderInfo.orderid+"','"+orderInfo.express+"','"+orderInfo.des+"',"+orderInfo.jine+",'"+orderInfo.phone+"')");
+		db.run("INSERT into [order] (uid,goods,orderid,express,des,jine,phone,area) values ("+orderInfo.uid+",'"+JSON.stringify(orderInfo.goods)+"','"+orderInfo.orderid+"','"+orderInfo.express+"','"+orderInfo.des+"',"+orderInfo.jine+",'"+orderInfo.phone+"','"+orderInfo.area+"')");
 		db.get("select last_insert_rowid() id",function(err,doc) {
 			callback(err,doc);
 		});
 	});
 
-var goods = orderInfo.goods;
-	for(var i=0; i<goods.length; i++) {
+	var goods = orderInfo.goods;
+	var goodsLength = goods.length;
+	/** 更新用户商品销售记录 **/
+	for(var i=0; i<goodsLength; i++) {
 		if(goods[i].state =='') {
 			userGood.insert(orderInfo.uid, goods[i]);
 		}
@@ -49,28 +52,27 @@ Order.del=function(id) {
 	db.run("delete from user where id = ?",[id]);
 }
 /**
- * 获取用户列表
+ * 获取订单列表
  * @param kw
  * @param cp
+ * @param state
  * @param callback
  */
-Order.page = function(kw,cp,callback) {
-	db.all("select * from [goods]",function(err,rows) {
+Order.page = function(uid,time,cp, state, callback) {
+	var query = '';
+	if(uid != 0) {
+		query += ' and uid='+uid;
+	}
+	if(state != -1) {
+		query += ' and state='+state;
+	}
+	console.log(query);
+	db.all("select A.id,B.user,A.[orderid],A.express,A.area,A.des,A.[jine],A.phone,A.state,A.time from [order] as A,[custom] as B where A.uid=B.id  " + query,function(err,rows) {
 		callback(err,rows);
 	});
 }
 
-/**
- * 获取商品列表名称
- * @param kw
- * @param cp
- * @param callback
- */
-Order.pageName = function(kw,cp,callback) {
-	db.all("select DISTINCT [name] from [goods]",function(err,rows) {
-		callback(err,rows);
-	});
-}
+
 
 Order.getByName = function(name, callback) {
 	db.all('SELECT * FROM [goods] where name=? ',[name],function(err,doc) {

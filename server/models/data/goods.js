@@ -7,6 +7,7 @@
  */
 
 var Goods={},
+	async = require('async'),
 	sqlite3=require('sqlite3').verbose(),
 	db=new sqlite3.Database('data.sqlite');
 /**
@@ -35,7 +36,7 @@ Goods.update = function(id, key, value) {
 
 /**
  * 删除用户
- * @param id 用户id
+ * @param id 用户id//
  */
 Goods.del=function(id) {
 	db.run("delete from user where id = ?",[id]);
@@ -74,6 +75,35 @@ Goods.getByName = function(name, callback) {
 	db.all('SELECT * FROM [goods] where name=? ',[name],function(err,doc) {
 		callback(err,doc);
 	});
+}
+
+/**
+ * 更新库存
+ * @param goodInfo
+ */
+Goods.updateBase = function(goodInfo) {
+	 async.waterfall([
+		 function(cb) {
+			 db.all('SELECT * FROM [goods] where name=? and norms=? ',[goodInfo.name, goodInfo.norms],function(err,doc) {
+				 callback(err,doc);
+			 });
+		 },
+		 function(doc, cb) {
+			 if(doc.unit == goodInfo.unit) {//如果和主单位一致
+				 db.run("update goods set number=number - ? where id = ?",[goodInfo.number,doc.id]);
+			 }
+			 else { //和辅助单位一致
+				 if(doc.assistNumber < goodInfo.number) { //主单位减一
+					 db.run("update goods set number=number - 1,assistNumber=? where id = ?",[(doc.change - goodInfo.number + doc.assistNumber),doc.id]);
+				 }
+				 else {
+					 db.run("update goods set assistNumber=? where id = ?",[(doc.assistNumber - goodInfo.number),doc.id]);
+				 }
+			 }
+		 }
+	 ],function(err,results) {
+
+	 });
 }
 
 module.exports = Goods;
