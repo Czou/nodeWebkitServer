@@ -1,11 +1,11 @@
 {
     "res": {
         "public/css/reset.css": {
-            "uri": "/css/reset_9e85864.css",
+            "uri": "/css/reset_144833b.css",
             "type": "css"
         },
         "public/js/common.js": {
-            "uri": "/js/common_5893ea6.js",
+            "uri": "/js/common_171d3dd.js",
             "type": "js"
         },
         "public/js/ejs.js": {
@@ -33,7 +33,7 @@
             "type": "js"
         },
         "public/js/witch.ui.datatable.js": {
-            "uri": "/js/witch.ui.datatable_6cc97fe.js",
+            "uri": "/js/witch.ui.datatable_5142d72.js",
             "type": "js"
         },
         "public/js/witch.ui.datatable.order.js": {

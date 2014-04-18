@@ -1,1 +1,0 @@
-!function(a){a.fn.witchDataTable=function(n){var t={thead:{"行号":"29px","用户名":"30px"},contentClass:"f-tab-c",ajaxUrl:void 0,loaddingClass:"f-tab-loadding"},n=a.extend(t,n)}}(jQuery);

@@ -58,7 +58,11 @@ home.pagegoods = function(req,res) {
 
 home.getgood = function(req,res) {
 	var val = tools.xssFilter(req.body.val);
-	goodsApi.getByName(val,0,function(err,doc) {
+	var uid = tools.xssFilter(req.body.uid);
+	if(uid == 'undefined') {
+		uid = 0;
+	}
+	goodsApi.getByName(val, uid, function(err,doc) {
 		if(err) {
 			res.send(err);
 		}
@@ -78,9 +82,12 @@ home.addorder = function(req, res) {
 		res.send(doc);
 	});
 }
-
-home.update = function(req, res) {
-	goodsApi.update(tools.xssFilter(req.body.id),tools.xssFilter(req.body.k),tools.xssFilter(req.body.v));
+home.editorder = function(req, res) {
+	var orderInfo =JSON.parse(tools.xssFilter(req.body.order));
+	var uid = tools.xssFilter(req.body.id);
+	orderApi.updateAll(uid,orderInfo);
 	res.send('true');
+
 }
+
 module.exports = home;

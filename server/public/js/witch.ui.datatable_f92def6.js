@@ -1,1 +1,0 @@
-!function(a){a.fn.witchDataTable=function(n){var t={thead:{},contentClass:"f-tab-c",ajaxUrl:void 0,loaddingClass:"f-tab-loadding"},n=a.extend(t,n)}}(jQuery);

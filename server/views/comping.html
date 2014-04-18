@@ -1,6 +1,6 @@
 <%- include /include/head.html %>
  <div class="m-tabletitle">
-     <input id="input"> <button id="search">搜索</button> <button id="adduser">添加新订单</button>
+     <!--input id="input"> <button id="search">搜索</button> <button id="adduser">添加新订单</button-->
  </div>
  <table id="user" class="m-table">
 
@@ -9,10 +9,11 @@
 <%- include /include/footermenu.html%>
  <ul id="youmenu" class="m-rmenu" tabindex="1" >
      <li  onclick="edit(this);">编辑</li>
+     <li  onclick="order(this);">已发货</li>
  </ul>
 <script src="/js/jquery-1.8.0.min_3a72846.js"></script>
 <script src="/plug/layer/layer.min.js"></script>
-<script src="/js/witch.ui.datatable_6cc97fe.js"></script>
+<script src="/js/witch.ui.datatable_5142d72.js"></script>
 <script>
     var table=new witchDataTable('#user',{
         thead: [
@@ -40,7 +41,7 @@
             },
             {
                 name: "物流",
-                width: '100px'
+                width: '80px'
             },
             {
                 name: "下单时间",
@@ -52,7 +53,7 @@
             }
         ],
         data:{
-            url:'/order/comping/page'
+            url:'/order/comping/page?state=0'
         },
         update:{
           url: '/customajax/update'
@@ -68,6 +69,26 @@
 
     function edit(obj) {
         document.location.href = '/order/editorder?id='+$(obj).parent().data("id");
+    }
+    /**
+     * 更新订单状态为已发货。该状态将更新数据库的库存
+     * @param obj
+     */
+    function order(obj) {
+        var id = $(obj).parent().data("id");
+        var op = $(obj).parent().data('obj');
+        $.ajax({
+            type: 'post',
+            url: '/order/comping/order',
+            data:'id=' + id +'&state= 1',
+            success: function(msg) {
+                if(msg == 'true') {
+                    layer.msg('已经入库', 1, -1);
+                    op.css('background-color','#0FA6D8');
+                }
+            }
+        });
+
     }
 </script>
 </body>

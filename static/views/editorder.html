@@ -2,7 +2,7 @@
  <div class="m-tabletitle">
 
         收货人：<input id="shouhuoren"/>&nbsp;&nbsp;地区：<input id="area" />&nbsp;&nbsp;物流：<input id="express"/>&nbsp;&nbsp;电话：<input id="phone"/>&nbsp;&nbsp;日期：<input id="time"/><br/>
-       说明：<input  id="des" style="width:500px;"/>&nbsp;&nbsp;订单编号：<span id="orderid"><%= objid%></span>&nbsp;&nbsp;合计金额：<span id="jine" style="font-weight: 900;color:red;font-size:20px;">0</span>&nbsp;&nbsp;<button onclick="saveOrder(0);" >保存订单</button><button onclick="saveOrder(1);" >保存并新增订单</button>
+       说明：<input  id="des" style="width:500px;"/>&nbsp;&nbsp;订单编号：<span id="orderid"><= objid%></span>&nbsp;&nbsp;合计金额：<span id="jine" style="font-weight: 900;color:red;font-size:20px;">0</span>&nbsp;&nbsp;<button onclick="updateOrder(0);" >更新订单</button>
 
  </div>
  <table id="user" class="m-table">
@@ -13,13 +13,13 @@
      <li  onclick="zengSong(this);">赠品</li>
      <li  onclick="del(this);">删除</li>
  </ul>
-<script src="/js/jquery-1.8.0.min_3a72846.js"></script>
+<script src="/public/js/jquery-1.8.0.min.js"></script>
 <script src="/plug/layer/layer.min.js"></script>
-<script src="/js/witch.ui.datatable_5142d72.js"></script>
-<script src="/js/witch.ui.validate_1ab8359.js"></script>
-<script src="/js/witch.ui.autoComplete_11b92ee.js"></script>
-<script src="/js/witch.ui.datatable.order_fb02ed3.js"></script>
-<script src="/js/common_171d3dd.js"></script>
+<script src="/public/js/witch.ui.datatable.js"></script>
+<script src="/public/js/witch.ui.validate.js"></script>
+<script src="/public/js/witch.ui.autoComplete.js"></script>
+<script src="/public/js/witch.ui.datatable.order.js"></script>
+<script src="/public/js/common.js"></script>
 <script>
     $('#shouhuoren').witchAuto({
         class: 'f-auto',
@@ -213,6 +213,62 @@
 
         },'删除用户');
     }
+
+    /** 获取订单 **/
+    function getOrder() {
+        var id = document.location.href.split('=')[1];
+        $.ajax({
+            type: 'post',
+            url: '/order/comping/getorder',
+            data: 'id=' + id,
+            dataType: 'json',
+            success: function(msg) {
+                msg = msg[0];
+                $('#shouhuoren').val(msg.user).data('uid',msg.uid);
+                $('#express').val(msg.express);
+                $('#phone').val(msg.phone);
+                $('#area').val(msg.area);
+                $('#des').val(msg.des);
+                $('#jine').html(msg.jine);
+                $('#orderid').html(msg.orderid);
+                var good =eval(msg.goods);
+                var l = good.length;
+                var objs = $('#user > tbody').find('tr');
+                for(var i=0; i<l; i++) {
+                   var tds = $(objs[i]).find('td');
+                    $(tds[1]).html(good[i].name);
+                    $(tds[2]).html(good[i].norms);
+                    $(tds[3]).html(good[i].unit);
+                    $(tds[4]).html(good[i].number);
+                    $(tds[5]).html(good[i].sale);
+                    $(tds[6]).html(good[i].count);
+                    $(tds[7]).html(good[i].state);
+                    getGood(good[i].name, $(tds[1]));
+                }
+            }
+        });
+    }
+
+    function getGood(tval, obj) {
+        $.ajax({
+            type: 'post',
+            url: '/order/addorder/getgood',
+            data: 'val=' + tval + '&uid=' + $('#shouhuoren').data('uid'),
+            dataType:'json',
+            success: function(msg) {
+                if(msg != '') {
+                    obj.data('gd',msg);
+                    var tds = obj.parent().find('td');
+                    $(tds[2]).html(msg[0].norms);
+                    $(tds[3]).text(msg[0].unit);
+                    $(tds[4]).text("0");
+                    $(tds[5]).text(msg[0].sale);
+                    $(tds[6]).text("0");
+                }
+            }
+        });
+    }
+   getOrder();
 
 </script>
 </body>

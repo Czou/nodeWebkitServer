@@ -22,4 +22,9 @@ home.comping = function(req ,res) {
 	res.render('comping');
 }
 
+home.editorder = function(req, res) {
+	res.render('editorder');
+}
+
+
 module.exports = home; 

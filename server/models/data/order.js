@@ -7,7 +7,8 @@
  */
 
 var Order={},
-	userGood=require('./usergood.js'),
+	userGood = require('./usergood.js'),
+	Goods = require('./goods.js'),
 	tools =  require('../../lib/tools.js'),
 	sqlite3=require('sqlite3').verbose(),
 	db=new sqlite3.Database('data.sqlite');
@@ -41,7 +42,26 @@ Order.insert = function(orderInfo, callback){
  * @param value 字段的值
  */
 Order.update = function(id, key, value) {
-	db.run("update goods set "+key+" = ? where id = ?",[value,id]);
+	db.run("update [order] set "+key+" = ? where id = ?",[value,id]);
+	if( key == 'state') {
+		Order.get(id, function(err,doc) {//更新库存
+			var goodInfo = doc.goods;
+			var goodInfoLength = goodInfo.length;
+			for(var i=0; i<goodInfoLength; i++) {
+				Goods.updateBase(goodInfo[i]);
+			}
+		});
+	}
+}
+
+/**
+ * 修改字段
+ * @param id  id
+ * @param key 字段
+ * @param value 字段的值
+ */
+Order.updateAll = function(id, orderInfo) {
+	db.run("update [order] set uid = ?,goods=?,express=?,des=?,jine=?,phone=?,area=? where id = ?",[orderInfo.uid,JSON.stringify(orderInfo.goods),orderInfo.express,orderInfo.des,orderInfo.jine,orderInfo.phone,orderInfo.area,id]);
 }
 
 /**
@@ -66,18 +86,17 @@ Order.page = function(uid,time,cp, state, callback) {
 	if(state != -1) {
 		query += ' and state='+state;
 	}
-	console.log(query);
 	db.all("select A.id,B.user,A.[orderid],A.express,A.area,A.des,A.[jine],A.phone,A.state,A.time from [order] as A,[custom] as B where A.uid=B.id  " + query,function(err,rows) {
 		callback(err,rows);
 	});
 }
 
-
-
-Order.getByName = function(name, callback) {
-	db.all('SELECT * FROM [goods] where name=? ',[name],function(err,doc) {
+/** 获取订单 **/
+Order.get = function(id, callback) {
+	db.all('SELECT A.*,B.user FROM [order] as A,[custom] as B where A.uid=B.id and A.id=? ',[id],function(err,doc) {
 		callback(err,doc);
 	});
 }
+
 
 module.exports = Order;
